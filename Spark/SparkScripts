@@ -1,0 +1,35 @@
+hdfs dfs -put * /input/
+hdfs dfs -get /output/
+
+bin/spark-shell --master yarn --deploy-mode client
+
+val input= sc.textFile("/input/")
+input.persist()
+val words = input.flatMap(line => line.split(' '))
+val count = words.map(word => (word,1)).reduceByKey{case(x,y) => x+y}
+count.saveAsTextFile("/output/")
+
+val filter = input.filter(line => line.contains("Spark"))
+filter.saveAsTextFile("/output/")
+
+val apache = input.filter(line => line.contains("Apache"))
+val spark = input.filter(line => line.contains("Spark"))
+val result =apache.union(spark)
+result.take(5).foreach(println)
+
+val lines = sc.parallelize(List("hello world","hi"))
+
+words.first()
+words.distinct().saveAsTextFile("/output/")
+
+val nums = sc.parallelize(List(1,2,1,3,1,2,4,3,2,1,4,2))
+nums.reduce((x,y) => x+y)
+
+val result = nums.aggregate((0,0))((acc,value) => (acc._1+value,acc._1+1),(acc1,acc2) => (acc1._1+acc1._2,acc2._1+acc2._2))
+
+val pageRank= sc.textFile("/input/PageRank")
+val links = pageRank.map(ranks => ranks.split(":"))
+val ranks = links.mapValues(ranks => 1.0)
+
+
+bin/spark-submit --class edu.main.WordCount /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/target/Spark-0.0.1-SNAPSHOT.jar 

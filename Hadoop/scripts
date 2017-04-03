@@ -1,0 +1,8 @@
+zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties &
+kafka-server-start.sh /home/ram/kafka_2.12-0.10.2.0/config/server.properties &
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic tweets
+flume-ng agent --conf conf --conf-file flume.properties --name twitterAgent -Dflume.root.logger=INFO,console
+
+hadoop jar bigdata-0.1.jar edu.learn.bigdata.TwitterProcessor /tweets/ /output/
+
+http://localhost:8088/cluster -- yarn url

@@ -1,0 +1,99 @@
+format version: 5
+output mode:
+1 items
+0 -> multiple
+output directories:
+2 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/java -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin
+compile options:
+8 items
+0 -> -javabootclasspath
+1 -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jaccess.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/icedtea-sound.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/nashorn.jar
+2 -> -javaextdirs
+3 ->  
+4 -> -bootclasspath
+5 -> /home/ram/eclipse/plugins/org.scala-ide.scala210.jars_4.4.1.201605041056/target/jars/scala-library.jar
+6 -> -encoding
+7 -> UTF-8
+javac options:
+0 items
+compiler version:
+1 items
+0 -> 2.10.6
+compile order:
+1 items
+0 -> Mixed
+name hashing:
+1 items
+0 -> false
+products:
+5 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$$anonfun$1.class
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$$anonfun$2.class
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$$anonfun$3.class
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$.class
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount.class
+binary dependencies:
+3 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /home/ram/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.10/2.1.0/98f0bfaf0939131a0909413a760e29f250bbe1d2/spark-core_2.10-2.1.0.jar
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /home/ram/eclipse/plugins/org.scala-ide.scala210.jars_4.4.1.201605041056/target/jars/scala-library.jar
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+direct source dependencies:
+0 items
+direct external dependencies:
+0 items
+public inherited source dependencies:
+0 items
+public inherited external dependencies:
+0 items
+member reference internal dependencies:
+0 items
+member reference external dependencies:
+0 items
+inheritance internal dependencies:
+0 items
+inheritance external dependencies:
+0 items
+class names:
+5 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> edu.main.WordCount
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> edu.main.WordCount$
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> edu.main.WordCount$$anonfun$1
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> edu.main.WordCount$$anonfun$2
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> edu.main.WordCount$$anonfun$3
+used names:
+0 items
+product stamps:
+5 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$$anonfun$1.class -> lastModified(1488707708000)
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$$anonfun$2.class -> lastModified(1488707708000)
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$$anonfun$3.class -> lastModified(1488707708000)
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount$.class -> lastModified(1488707708000)
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/bin/edu/main/WordCount.class -> lastModified(1488707708000)
+source stamps:
+1 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> hash(750901b73dd7b3e2ac189f16c2a23a584c4f8103)
+binary stamps:
+3 items
+/home/ram/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.10/2.1.0/98f0bfaf0939131a0909413a760e29f250bbe1d2/spark-core_2.10-2.1.0.jar -> lastModified(1488704627000)
+/home/ram/eclipse/plugins/org.scala-ide.scala210.jars_4.4.1.201605041056/target/jars/scala-library.jar -> lastModified(1462346780000)
+/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar -> lastModified(1485187082000)
+class names:
+3 items
+/home/ram/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.10/2.1.0/98f0bfaf0939131a0909413a760e29f250bbe1d2/spark-core_2.10-2.1.0.jar -> org.apache.spark.rdd.RDD
+/home/ram/eclipse/plugins/org.scala-ide.scala210.jars_4.4.1.201605041056/target/jars/scala-library.jar -> scala.Predef$
+/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar -> java.lang.Object
+internal apis:
+1 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHC7IQb7AHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAAdXEAfgAJAAAAAHNyABN4c2J0aS5hcGkuU291cmNlQVBJuV6n+SkjOKQCAAJbAAtkZWZpbml0aW9uc3QAF1tMeHNidGkvYXBpL0RlZmluaXRpb247WwAIcGFja2FnZXN0ABRbTHhzYnRpL2FwaS9QYWNrYWdlO3hwdXIAF1tMeHNidGkuYXBpLkRlZmluaXRpb247iMlc57TjXg4CAAB4cAAAAAFzcgATeHNidGkuYXBpLkNsYXNzTGlrZYM0HKHfsJdsAgAETAAOZGVmaW5pdGlvblR5cGV0ABpMeHNidGkvYXBpL0RlZmluaXRpb25UeXBlO1sAEHNhdmVkQW5ub3RhdGlvbnN0ABNbTGphdmEvbGFuZy9TdHJpbmc7TAAIc2VsZlR5cGV0ABBMeHNidGkvYXBpL0xhenk7TAAJc3RydWN0dXJlcQB+ABV4cgAheHNidGkuYXBpLlBhcmFtZXRlcml6ZWREZWZpbml0aW9u+RFusdVQPOICAAFbAA50eXBlUGFyYW1ldGVyc3QAGltMeHNidGkvYXBpL1R5cGVQYXJhbWV0ZXI7eHIAFHhzYnRpLmFwaS5EZWZpbml0aW9uhyob6HFC40YCAARMAAZhY2Nlc3N0ABJMeHNidGkvYXBpL0FjY2VzcztbAAthbm5vdGF0aW9uc3QAF1tMeHNidGkvYXBpL0Fubm90YXRpb247TAAJbW9kaWZpZXJzdAAVTHhzYnRpL2FwaS9Nb2RpZmllcnM7TAAEbmFtZXQAEkxqYXZhL2xhbmcvU3RyaW5nO3hwc3IAEHhzYnRpLmFwaS5QdWJsaWO6WD2ubC1gQgIAAHhyABB4c2J0aS5hcGkuQWNjZXNz3WKa+B1jMUgCAAB4cHVyABdbTHhzYnRpLmFwaS5Bbm5vdGF0aW9uO+uX6xkQ9o1IAgAAeHAAAAAAc3IAE3hzYnRpLmFwaS5Nb2RpZmllcnPHERMhaZzcJAIAAUIABWZsYWdzeHAAdAASZWR1Lm1haW4uV29yZENvdW50dXIAGltMeHNidGkuYXBpLlR5cGVQYXJhbWV0ZXI72W0mDyid8rYCAAB4cAAAAAB+cgAYeHNidGkuYXBpLkRlZmluaXRpb25UeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAGTW9kdWxldXIAE1tMamF2YS5sYW5nLlN0cmluZzut0lbn6R17RwIAAHhwAAAAAHNyABN4c2J0aS5TYWZlTGF6eSRJbXBsO5FPEfRFTMkCAANaAAhiaXRtYXAkMEwAAl90dAASTGphdmEvbGFuZy9PYmplY3Q7TAAEZXZhbHQAEUxzY2FsYS9GdW5jdGlvbjA7eHIAFnhzYnRpLmFwaS5BYnN0cmFjdExhennTd7UBX7vnoAIAAHhwAHBzcgAgeHNidGkuU2FmZUxhenkkJGFub25mdW4kc3RyaWN0JDEAAAAAAAAAAAIAAUwAB3ZhbHVlJDFxAH4AL3hwc3IAE3hzYnRpLmFwaS5FbXB0eVR5cGW8/Z5GSTuJJAIAAHhyABR4c2J0aS5hcGkuU2ltcGxlVHlwZXJ4YoghI79AAgAAeHIADnhzYnRpLmFwaS5UeXBlP2rZIRZJqsoCAAB4cHNxAH4ALgBwc3EAfgAzc3IAE3hzYnRpLmFwaS5TdHJ1Y3R1cmWpqvmAk2/YAAIAA0wACGRlY2xhcmVkcQB+ABVMAAlpbmhlcml0ZWRxAH4AFUwAB3BhcmVudHNxAH4AFXhxAH4AN3NxAH4ALgBwc3EAfgAzdXEAfgAQAAAAAXNyAA14c2J0aS5hcGkuRGVmUr6f4ny0NmkCAAJMAApyZXR1cm5UeXBldAAQTHhzYnRpL2FwaS9UeXBlO1sAD3ZhbHVlUGFyYW1ldGVyc3QAGltMeHNidGkvYXBpL1BhcmFtZXRlckxpc3Q7eHEAfgAWcQB+ACB1cQB+ACEAAAAAc3EAfgAjAHQABG1haW51cQB+ACYAAAAAc3IAFHhzYnRpLmFwaS5Qcm9qZWN0aW9u89KNVOlFpC0CAAJMAAJpZHEAfgAcTAAGcHJlZml4dAAWTHhzYnRpL2FwaS9TaW1wbGVUeXBlO3hxAH4ANnQABFVuaXRzcgATeHNidGkuYXBpLlNpbmdsZXRvbvynX/jPVuRGAgABTAAEcGF0aHQAEEx4c2J0aS9hcGkvUGF0aDt4cQB+ADZzcgAOeHNidGkuYXBpLlBhdGibPVwIzqUnhAIAAVsACmNvbXBvbmVudHN0ABpbTHhzYnRpL2FwaS9QYXRoQ29tcG9uZW50O3hwdXIAGltMeHNidGkuYXBpLlBhdGhDb21wb25lbnQ7Q9oJdC1nFnQCAAB4cAAAAAJzcgAMeHNidGkuYXBpLklkmDJsizdTxEACAAFMAAJpZHEAfgAceHIAF3hzYnRpLmFwaS5QYXRoQ29tcG9uZW50X5oiWy6Gn7wCAAB4cHQABXNjYWxhc3IADnhzYnRpLmFwaS5UaGlz2wntpsxaQFwCAAB4cQB+AFV1cgAaW0x4c2J0aS5hcGkuUGFyYW1ldGVyTGlzdDv10zod8rNw7gIAAHhwAAAAAXNyABd4c2J0aS5hcGkuUGFyYW1ldGVyTGlzdNbFvBxkSXTjAgACWgAKaXNJbXBsaWNpdFsACnBhcmFtZXRlcnN0ABxbTHhzYnRpL2FwaS9NZXRob2RQYXJhbWV0ZXI7eHAAdXIAHFtMeHNidGkuYXBpLk1ldGhvZFBhcmFtZXRlcjvPuMVdpd21bQIAAHhwAAAAAXNyABl4c2J0aS5hcGkuTWV0aG9kUGFyYW1ldGVyH0WuF9NJsOoCAARaAApoYXNEZWZhdWx0TAAIbW9kaWZpZXJ0AB1MeHNidGkvYXBpL1BhcmFtZXRlck1vZGlmaWVyO0wABG5hbWVxAH4AHEwAA3RwZXEAfgBBeHAAfnIAG3hzYnRpLmFwaS5QYXJhbWV0ZXJNb2RpZmllcgAAAAAAAAAAEgAAeHEAfgApdAAFUGxhaW50AARhcmdzc3IAF3hzYnRpLmFwaS5QYXJhbWV0ZXJpemVkFmzuaQPJu38CAAJMAAhiYXNlVHlwZXEAfgBJWwANdHlwZUFyZ3VtZW50c3QAEVtMeHNidGkvYXBpL1R5cGU7eHEAfgA2c3EAfgBIdAAFQXJyYXlxAH4ATnVyABFbTHhzYnRpLmFwaS5UeXBlO3T/pVp7+elBAgAAeHAAAAABc3EAfgBIdAAGU3RyaW5nc3EAfgBMc3EAfgBPdXEAfgBSAAAAA3NxAH4AVHQABGphdmFzcQB+AFR0AARsYW5ncQB+AFlzcQB+AC4AcHNxAH4AM3VxAH4AEAAAAABzcQB+AC4AcHNxAH4AM3VxAH4AbQAAAAJzcQB+AEh0AAZPYmplY3RxAH4AcXNxAH4ASHQAA0FueXEAfgBOdXIAFFtMeHNidGkuYXBpLlBhY2thZ2U7WxMZN3CnJ6ECAAB4cAAAAAJzcgAReHNidGkuYXBpLlBhY2thZ2V+WY/2rs45WAIAAUwABG5hbWVxAH4AHHhwdAADZWR1c3EAfgCEdAAIZWR1Lm1haW5zcgAVeHNidGkuYXBpLkNvbXBpbGF0aW9u7frgw2rooEICAAJKAAlzdGFydFRpbWVbAAdvdXRwdXRzdAAaW0x4c2J0aS9hcGkvT3V0cHV0U2V0dGluZzt4cAAAAVqd5Nv0dXIAGltMeHNidGkuYXBpLk91dHB1dFNldHRpbmc7f2rC86eHpUICAAB4cAAAAAJzcgAXeHNidGkuYXBpLk91dHB1dFNldHRpbmd62ZpHdPsdewIAAkwAD291dHB1dERpcmVjdG9yeXEAfgAcTAAPc291cmNlRGlyZWN0b3J5cQB+ABx4cHQAOC9tbnQvMDFEMjZDOTcyNzJDQkFCMC93b3Jrc3BhY2UvZ2l0L3JlcG9zaXRvcnkvU3BhcmsvYmludABCL21udC8wMUQyNkM5NzI3MkNCQUIwL3dvcmtzcGFjZS9naXQvcmVwb3NpdG9yeS9TcGFyay9zcmMvbWFpbi9qYXZhc3EAfgCOdAA4L21udC8wMUQyNkM5NzI3MkNCQUIwL3dvcmtzcGFjZS9naXQvcmVwb3NpdG9yeS9TcGFyay9iaW50AEMvbW50LzAxRDI2Qzk3MjcyQ0JBQjAvd29ya3NwYWNlL2dpdC9yZXBvc2l0b3J5L1NwYXJrL3NyYy9tYWluL3NjYWxhdXIAAltCrPMX+AYIVOACAAB4cAAAABR1CQG3Pdez4qwYnxbCojpYTE+BAw==
+external apis:
+0 items
+source infos:
+1 items
+/mnt/01D26C97272CBAB0/workspace/git/repository/Spark/src/main/scala/edu/main/WordCount.scala -> 
+AAAAAAAAAAA=
+compilations:
+1 items
+0 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABWp3k2/R1cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAnNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQAOC9tbnQvMDFEMjZDOTcyNzJDQkFCMC93b3Jrc3BhY2UvZ2l0L3JlcG9zaXRvcnkvU3BhcmsvYmludABCL21udC8wMUQyNkM5NzI3MkNCQUIwL3dvcmtzcGFjZS9naXQvcmVwb3NpdG9yeS9TcGFyay9zcmMvbWFpbi9qYXZhc3EAfgAFdAA4L21udC8wMUQyNkM5NzI3MkNCQUIwL3dvcmtzcGFjZS9naXQvcmVwb3NpdG9yeS9TcGFyay9iaW50AEMvbW50LzAxRDI2Qzk3MjcyQ0JBQjAvd29ya3NwYWNlL2dpdC9yZXBvc2l0b3J5L1NwYXJrL3NyYy9tYWluL3NjYWxh
