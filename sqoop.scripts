@@ -1,0 +1,16 @@
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --where "country='USA'"
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --P --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --as-sequencefile
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --as-avrodatafile
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --compress
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --map-column-java id=Long
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --num-mappers 2
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --null-string 'NA' --null-non-string 0
+sqoop import-all-tables --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table visits --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --incremental append --check-column id --last-value 1
+
+
+ 
+
+
