@@ -7,10 +7,7 @@ sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password 
 sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --map-column-java id=Long
 sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --num-mappers 2
 sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table cities --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --null-string 'NA' --null-non-string 0
-sqoop import-all-tables --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/
+sqoop import-all-tables --connect jdbc:mysql://localhost/sqoop --username sqoop -P --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/
 sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --table visits --driver com.mysql.jdbc.Driver --warehouse-dir sqoop/ --incremental append --check-column id --last-value 1
-
-
- 
-
-
+sqoop import --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --driver com.mysql.jdbc.Driver --query 'SELECT normcities.id,countries.country,normcities.city FROM normcities JOIN countries USING(country_id) WHERE $CONDITIONS' --split-by id --target-dir cities
+sqoop export --connect jdbc:mysql://localhost/sqoop --username sqoop --password sqoop --driver com.mysql.jdbc.Driver --table cities --export-dir cities --batch
