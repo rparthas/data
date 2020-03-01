@@ -6,3 +6,4 @@ output
 venv
 *DS_store
 spark-warehouse
+input
