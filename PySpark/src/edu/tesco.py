@@ -9,10 +9,10 @@ spark = SparkSession.builder. \
 
 
 def execute():
-    data = spark.read.option("header", True).csv("hdfs://namenode:9000/user/root/Region_Grocery/")
+    data = spark.read.option("header", True).csv("hdfs://namenode:9000/Region_Grocery/")
     result = data.withColumn("volume", data["volume"].cast(DoubleType()))
     agg_result = result.groupBy('area_id').avg('volume')
-    agg_result.show(100)
+    agg_result.write.option("header", True).csv("hdfs://namenode:9000/Output/")
 
 
 execute()
