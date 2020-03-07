@@ -1,3 +1,7 @@
-/.gradle/
-/bin/
-/build/
+.idea
+project
+output
+target
+*DS_store
+spark-warehouse
+input
