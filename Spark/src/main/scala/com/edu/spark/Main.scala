@@ -10,7 +10,9 @@ object Main {
     val conf: SparkConf = new SparkConf()
     val spark: SparkSession = SparkSession.builder().appName("Main").config(conf).getOrCreate()
     val grocery = new Grocery()
-    grocery.calculateAverageVolume(spark, args(0))
-//    new Simple().execute(spark)
+    val result = grocery.calculateAverageVolume(spark, args(0))
+    result.show(10)
+    println("Sum of Avg volumes: " + grocery.calculateSumOfVolumeAverages(spark, result))
+    Thread.sleep(60000)
   }
 }
