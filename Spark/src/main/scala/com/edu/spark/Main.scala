@@ -1,6 +1,6 @@
 package com.edu.spark
 
-import org.apache.spark.SparkConf
+import org.apache.spark.{SparkConf, SparkExecutorInfo}
 import org.apache.spark.sql.SparkSession
 
 object Main {
@@ -14,5 +14,6 @@ object Main {
     result.show(10)
     println("Sum of Avg volumes: " + grocery.calculateSumOfVolumeAverages(spark, result))
     Thread.sleep(60000)
+
   }
 }
