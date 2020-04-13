@@ -3,9 +3,7 @@ sh stop.sh
 
 docker network create --driver=bridge hadoop
 
-# the default node number is 3
-N=${1:-3}
-
+N=${1:-4}
 
 # start hadoop master container
 echo "start hadoop-master container..."
