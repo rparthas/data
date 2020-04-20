@@ -4,4 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyspark = "==2.4.3"
+pyspark = "==2.4.5"
+
+[requires]
+python_version = "3.7"
