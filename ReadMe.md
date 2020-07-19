@@ -6,7 +6,7 @@ This contains couple of technology stacks - Python,R, java and Scala
 
 Following are the project descriptions
 
-- Contest -> General Contests
+- Hackathons -> All data hackathons
 - Hadoop -> My initial attempts with Hadoop
 - Machine Learning A-Z -> Krill Emenko's course on Udemy
 - MLIntro -> Introduction to Machine Learning Coursera version
