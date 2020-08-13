@@ -1,2 +1,5 @@
 .vscode
 *.csv
+data
+catboost_info
+*.log
