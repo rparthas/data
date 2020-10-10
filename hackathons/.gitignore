@@ -3,3 +3,4 @@
 data
 catboost_info
 *.log
+mlruns
