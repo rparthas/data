@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pyspark = "==2.4.5"
+mrjob = "==0.7.4"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"

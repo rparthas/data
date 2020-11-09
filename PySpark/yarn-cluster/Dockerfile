@@ -12,10 +12,15 @@ RUN wget https://mirrors.estointernet.in/apache/hadoop/common/hadoop-2.7.7/hadoo
     rm hadoop-2.7.7.tar.gz
 
 # install spark
-RUN wget http://apachemirror.wuchna.com/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz && \
-    tar -xvf spark-2.4.5-bin-hadoop2.7.tgz && \
-    mv spark-2.4.5-bin-hadoop2.7 /usr/local/spark && \
-    rm spark-2.4.5-bin-hadoop2.7.tgz
+RUN wget http://apachemirror.wuchna.com/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz && \
+    tar -xvf spark-2.4.7-bin-hadoop2.7.tgz && \
+    mv spark-2.4.7-bin-hadoop2.7 /usr/local/spark && \
+    rm spark-2.4.7-bin-hadoop2.7.tgz
+
+RUN wget https://mirrors.estointernet.in/apache/pig/pig-0.17.0/pig-0.17.0.tar.gz && \
+    tar -xvf pig-0.17.0.tar.gz && \
+    mv pig-0.17.0 /usr/local/hadoop/pig && \
+    rm pig-0.17.0.tar.gz
 
 RUN apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python
 
@@ -25,7 +30,8 @@ ENV HADOOP_HOME=/usr/local/hadoop
 ENV SPARK_HOME=/usr/local/spark
 ENV HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
 ENV LD_LIBRARY_PATH=/usr/local/hadoop/lib/native:$LD_LIBRARY_PATH
-ENV PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin
+ENV PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/hadoop/pig/bin
+ENV PIG_HOME=/usr/local/hadoop/pig 
 
 # ssh without key
 RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
