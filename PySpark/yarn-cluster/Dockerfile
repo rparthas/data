@@ -24,6 +24,12 @@ RUN wget https://mirrors.estointernet.in/apache/pig/pig-0.17.0/pig-0.17.0.tar.gz
 
 RUN apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python
 
+RUN wget https://mirrors.estointernet.in/apache/tez/0.9.2/apache-tez-0.9.2-bin.tar.gz && \
+    tar -xvf apache-tez-0.9.2-bin.tar.gz  && \
+    mkdir /usr/local/hadoop/tez && \
+    mv apache-tez-0.9.2-bin /usr/local/hadoop/tez/tez && \
+    rm apache-tez-0.9.2-bin.tar.gz
+
 # set environment variables
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
 ENV HADOOP_HOME=/usr/local/hadoop 
@@ -51,7 +57,10 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
     mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves && \
     mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \
-    mv /tmp/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
+    mv /tmp/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf && \
+    mkdir /usr/local/hadoop/tez/conf/ && \
+    mv /tmp/tez-site.xml /usr/local/hadoop/tez/conf/tez-site.xml 
+
 
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \

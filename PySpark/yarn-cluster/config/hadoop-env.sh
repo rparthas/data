@@ -96,3 +96,8 @@ export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
 
 # A string representing this instance of hadoop. $USER by default.
 export HADOOP_IDENT_STRING=$USER
+
+# Config for Tez
+export TEZ_CONF_DIR=/usr/local/hadoop/tez/conf/
+export TEZ_JARS=/usr/local/hadoop/tez/tez/
+export HADOOP_CLASSPATH=${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_JARS}/lib/*:${HADOOP_CLASSPATH}
