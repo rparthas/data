@@ -20,7 +20,7 @@ def parse_movie(movie_line):
 
 if __name__ == "__main__":
     spark = SparkSession.builder. \
-        appName("WorstMovie").getOrCreate()
+        appName("MovieRecommendation").getOrCreate()
 
     ratings_file = spark.sparkContext.textFile(rating_file)
     movie_ratings = spark.createDataFrame(ratings_file.map(parse_movie_rating_row)).cache()

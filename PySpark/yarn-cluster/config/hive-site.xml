@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>system:user.name</name>
+        <value>usrname</value>
+    </property>
+    <property>
+        <name>system:java.io.tmpdir</name>
+        <value>/tmp/</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value>jdbc:derby:/usr/local/hive/metastore_db;databaseName=metastore_db;create=true</value>
+    </property>
+    <property>
+        <name>hive.execution.engine</name>
+        <value>tez</value>
+    </property>
+</configuration>
