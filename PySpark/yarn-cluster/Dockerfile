@@ -38,7 +38,7 @@ RUN wget http://archive.apache.org/dist/db/derby/db-derby-10.12.1.1/db-derby-10.
     mv db-derby-10.12.1.1-bin /usr/local/derby && \
     rm db-derby-10.12.1.1-bin.tar.gz
 
-RUN apt update && apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python3.1
+RUN apt update && apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python
 
 # set environment variables
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
