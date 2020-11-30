@@ -9,6 +9,7 @@
 #   /root/tesco.py hdfs://hadoop-master:9000/Region_Grocery/ hdfs://hadoop-master:9000/Output/
 
 ## HDFS Course
+#docker exec -it hadoop-master rm -rf /root/spark-warehouse/
 #docker cp ~/Downloads/HadoopMaterials/ml-100k hadoop-master:/root/
 #docker exec -it hadoop-master hadoop fs -copyFromLocal ml-100k /
 

@@ -1,5 +1,5 @@
-from pyspark.sql.types import *
 from pyspark.sql import SparkSession
+from pyspark.sql.types import *
 import pyspark.sql.functions as F
 
 # Programmatic way to define a schema
@@ -36,40 +36,30 @@ if __name__ == '__main__':
     sf_fire_file = "hdfs://hadoop-master:9000/Fire_Incidents.csv"
     spark = SparkSession.builder.appName("fire").getOrCreate()
     fire_df = spark.read.csv(sf_fire_file, header=True, schema=fire_schema)
-    # fire_df.write.format("parquet").save("hdfs://hadoop-master:9000/Fire_Incidents.parquet")
-    # fire_df.write.format("parquet").saveAsTable("fire_calls")
+    fire_df.write.format("parquet").save("hdfs://hadoop-master:9000/Fire_Incidents.parquet")
 
-    # few_fire_df = (fire_df
-    #                .select("IncidentNumber", "AvailableDtTm", "CallType")
-    #                .where("CallType != 'Medical Incident'"))
-    # few_fire_df.show(5, truncate=False)
-    #
-    # fire_df.select("CallType") \
-    #     .where(F.col("CallType").isNotNull()) \
-    #     .agg(F.countDistinct("CallType").alias("DistinctCallTypes")).show()
-    #
-    # (fire_df
-    #  .select("CallType")
-    #  .where(F.col("CallType").isNotNull())
-    #  .distinct()
-    #  .show(10, False))
+    few_fire_df = (fire_df
+                   .select("IncidentNumber", "AvailableDtTm", "CallType")
+                   .where("CallType != 'Medical Incident'"))
+    few_fire_df.show(5, truncate=False)
 
-    new_fire_df = fire_df.withColumnRenamed("Delay", "ResponseDelayedinMins")
-    (new_fire_df
-     .select("ResponseDelayedinMins")
-     .where(F.col("ResponseDelayedinMins") > 5)
-     .show(5, False))
+    fire_df.select("CallType") \
+        .where(F.col("CallType").isNotNull()) \
+        .agg(F.countDistinct("CallType").alias("DistinctCallTypes")).show()
 
-    fire_ts_df = (new_fire_df
+    (fire_df
+     .select("CallType")
+     .where(F.col("CallType").isNotNull())
+     .distinct()
+     .show(10, False))
+
+    fire_ts_df = (fire_df
                   .withColumn("IncidentDate", F.to_timestamp(F.col("CallDate"), "MM/dd/yyyy"))
                   .drop("CallDate")
                   .withColumn("OnWatchDate", F.to_timestamp(F.col("WatchDate"), "MM/dd/yyyy"))
                   .drop("WatchDate")
-                  .withColumn("AvailableDtTS", F.to_timestamp(F.col("AvailableDtTm"),
-                                                              "MM/dd/yyyy hh:mm:ss a"))
-                  .drop("AvailableDtTm"))
+                  )
 
     (fire_ts_df
-     .select(F.sum("NumAlarms"), F.avg("ResponseDelayedinMins"),
-             F.min("ResponseDelayedinMins"), F.max("ResponseDelayedinMins"))
+     .select(F.sum("NumAlarms"))
      .show())
