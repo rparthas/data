@@ -33,15 +33,18 @@ fire_schema = StructType([StructField('CallNumber', IntegerType(), True),
                           StructField('Delay', FloatType(), True)])
 
 if __name__ == '__main__':
-    sf_fire_file = "hdfs://hadoop-master:9000/Fire_Incidents.csv"
+    sf_fire_file = "hdfs://hadoop-master:9000/Fire_Incidents.parquet"
     spark = SparkSession.builder.appName("fire").getOrCreate()
-    fire_df = spark.read.csv(sf_fire_file, header=True, schema=fire_schema)
-    fire_df.write.format("parquet").save("hdfs://hadoop-master:9000/Fire_Incidents.parquet")
+    fire_df = spark.read.parquet(sf_fire_file)
+    fire_df.write.saveAsTable("fire_incidents", format='parquet', mode='overwrite',
+                              path='hdfs://hadoop-master:9000/Fire_incidents_table')
 
     few_fire_df = (fire_df
-                   .select("IncidentNumber", "AvailableDtTm", "CallType")
-                   .where("CallType != 'Medical Incident'"))
+                   .select("Incident_Number", "Available_DtTm", "Call_Type")
+                   .where(F.col("Call_Type") != 'Medical Incident'))
     few_fire_df.show(5, truncate=False)
+
+    spark.sql("select  Incident_Number from fire_incidents where Call_Type != 'Medical Incident'").show(n=2)
 
     fire_df.select("CallType") \
         .where(F.col("CallType").isNotNull()) \
