@@ -15,6 +15,8 @@ docker run -itd \
                 -p 16010:16010 \
                 -p 18080:18080 \
                 -p 4040:4040 \
+                -p 8000:8000 \
+                -p 8001:8001 \
                 --name hadoop-master \
                 --hostname hadoop-master \
                 spark-hadoop:latest &> /dev/null
@@ -36,8 +38,14 @@ do
 done 
 
 docker exec -it hadoop-master /root/start-hadoop.sh
+
 docker exec -it hadoop-master hadoop fs -mkdir /spark-logs
 docker exec -it hadoop-master /usr/local/spark/sbin/start-history-server.sh
+
 docker exec -it hadoop-master hadoop fs -mkdir /tez 
 docker exec -it hadoop-master hadoop fs -copyFromLocal /usr/local/hadoop/tez/tez/share/tez.tar.gz /tez/
+
 docker exec -it hadoop-master schematool -initSchema -dbType derby
+
+docker exec -it hadoop-master /usr/local/hbase/bin/start-hbase.sh
+docker exec -it hadoop-master /usr/local/hbase/bin/hbase-daemon.sh start rest -p 8000 --infoport 8001

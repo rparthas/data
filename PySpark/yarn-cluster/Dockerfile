@@ -6,23 +6,23 @@ WORKDIR /root
 RUN apt-get update && apt-get install -y openssh-server openjdk-8-jdk wget vim
 
 # install hadoop 2.7.7
-RUN wget https://mirrors.estointernet.in/apache/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz&& \
+RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
     tar -xzvf hadoop-2.7.7.tar.gz && \
     mv hadoop-2.7.7 /usr/local/hadoop && \
     rm hadoop-2.7.7.tar.gz
 
 # install spark
-RUN wget http://apachemirror.wuchna.com/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz && \
+RUN wget https://archive.apache.org/dist/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz && \
     tar -xvf spark-2.4.7-bin-hadoop2.7.tgz && \
     mv spark-2.4.7-bin-hadoop2.7 /usr/local/spark && \
     rm spark-2.4.7-bin-hadoop2.7.tgz
 
-RUN wget https://mirrors.estointernet.in/apache/pig/pig-0.17.0/pig-0.17.0.tar.gz && \
+RUN wget https://archive.apache.org/dist/pig/pig-0.17.0/pig-0.17.0.tar.gz && \
     tar -xvf pig-0.17.0.tar.gz && \
     mv pig-0.17.0 /usr/local/hadoop/pig && \
     rm pig-0.17.0.tar.gz
 
-RUN wget https://mirrors.estointernet.in/apache/tez/0.9.2/apache-tez-0.9.2-bin.tar.gz && \
+RUN wget https://archive.apache.org/dist/tez/0.9.2/apache-tez-0.9.2-bin.tar.gz && \
     tar -xvf apache-tez-0.9.2-bin.tar.gz  && \
     mkdir /usr/local/hadoop/tez && \
     mv apache-tez-0.9.2-bin /usr/local/hadoop/tez/tez && \
@@ -40,6 +40,17 @@ RUN wget http://archive.apache.org/dist/db/derby/db-derby-10.12.1.1/db-derby-10.
 
 RUN apt update && apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python
 
+RUN wget https://archive.apache.org/dist/hbase/1.4.9/hbase-1.4.9-bin.tar.gz && \
+    tar -xvf hbase-1.4.9-bin.tar.gz  && \
+    mv hbase-1.4.9 /usr/local/hbase && \
+    rm hbase-1.4.9-bin.tar.gz
+
+RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    python3 get-pip.py && \
+    pip install numpy && \
+    pip install mrjob && \
+    apt-get -y install iputils-ping
+
 # set environment variables
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
 ENV HADOOP_HOME=/usr/local/hadoop 
@@ -49,7 +60,8 @@ ENV LD_LIBRARY_PATH=/usr/local/hadoop/lib/native:$LD_LIBRARY_PATHLD_LIBRARY_PATH
 ENV PIG_HOME=/usr/local/hadoop/pig
 ENV HIVE_HOME=/usr/local/hive
 ENV DERBY_HOME=/usr/local/derby
-ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin:$PIG_HOME/bin:$HIVE_HOME/bin:$DERBY_HOME/bin
+ENV HBASE_HOME=/usr/local/hbase
+ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin:$PIG_HOME/bin:$HIVE_HOME/bin:$DERBY_HOME/bin:$JAVA_HOME
 ENV CLASSPATH $CLASSPATH:/usr/local/Hadoop/lib/*:.
 ENV CLASSPATH $CLASSPATH:/usr/local/hive/lib/*:.
 
@@ -59,7 +71,9 @@ RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
 
 RUN mkdir -p ~/hdfs/namenode && \
     mkdir -p ~/hdfs/datanode && \
-    mkdir $HADOOP_HOME/logs
+    mkdir $HADOOP_HOME/logs && \
+    mkdir /tmp/zookeeper && \
+    mkdir /tmp/hbase-root
 
 COPY config/* /tmp/
 
@@ -75,13 +89,9 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mkdir /usr/local/hadoop/tez/conf/ && \
     mv /tmp/tez-site.xml /usr/local/hadoop/tez/conf/tez-site.xml  && \
     mv /tmp/hive-site.xml /usr/local/hive/conf/hive-site.xml && \
-    cp /usr/local/hive/conf/hive-env.sh.template /usr/local/hive/conf/hive-env.sh 
-
-
-RUN wget https://bootstrap.pypa.io/get-pip.py && \
-    python3 get-pip.py && \
-    pip install numpy && \
-    pip install mrjob
+    cp /usr/local/hive/conf/hive-env.sh.template /usr/local/hive/conf/hive-env.sh && \ 
+    mv /tmp/hbase-site.xml /usr/local/hbase/conf/hbase-site.xml && \
+    mv /tmp/regionservers /usr/local/hbase/conf/regionservers
 
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
