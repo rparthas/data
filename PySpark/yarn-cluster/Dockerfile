@@ -40,10 +40,10 @@ RUN wget http://archive.apache.org/dist/db/derby/db-derby-10.12.1.1/db-derby-10.
 
 RUN apt update && apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python
 
-RUN wget https://archive.apache.org/dist/hbase/1.4.9/hbase-1.4.9-bin.tar.gz && \
-    tar -xvf hbase-1.4.9-bin.tar.gz  && \
-    mv hbase-1.4.9 /usr/local/hbase && \
-    rm hbase-1.4.9-bin.tar.gz
+RUN wget https://archive.apache.org/dist/hbase/1.4.0/hbase-1.4.0-bin.tar.gz && \
+    tar -xvf hbase-1.4.0-bin.tar.gz  && \
+    mv hbase-1.4.0 /usr/local/hbase && \
+    rm hbase-1.4.0-bin.tar.gz
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
@@ -61,7 +61,7 @@ ENV PIG_HOME=/usr/local/hadoop/pig
 ENV HIVE_HOME=/usr/local/hive
 ENV DERBY_HOME=/usr/local/derby
 ENV HBASE_HOME=/usr/local/hbase
-ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin:$PIG_HOME/bin:$HIVE_HOME/bin:$DERBY_HOME/bin:$JAVA_HOME
+ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin:$PIG_HOME/bin:$HIVE_HOME/bin:$DERBY_HOME/bin:$JAVA_HOME:$HBASE_HOME/bin
 ENV CLASSPATH $CLASSPATH:/usr/local/Hadoop/lib/*:.
 ENV CLASSPATH $CLASSPATH:/usr/local/hive/lib/*:.
 
@@ -91,7 +91,8 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/hive-site.xml /usr/local/hive/conf/hive-site.xml && \
     cp /usr/local/hive/conf/hive-env.sh.template /usr/local/hive/conf/hive-env.sh && \ 
     mv /tmp/hbase-site.xml /usr/local/hbase/conf/hbase-site.xml && \
-    mv /tmp/regionservers /usr/local/hbase/conf/regionservers
+    mv /tmp/regionservers /usr/local/hbase/conf/regionservers && \
+    mv /tmp/hbase-env.sh /usr/local/hbase/conf/hbase-env.sh
 
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
