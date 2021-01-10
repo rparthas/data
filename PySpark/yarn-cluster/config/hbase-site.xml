@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<configuration>
+<!--  <property>-->
+<!--    <name>hbase.rootdir</name>-->
+<!--    <value>hdfs://hadoop-master:9000/hbase</value>-->
+<!--  </property>-->
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>hadoop-master,hadoop-slave1,hadoop-slave2,hadoop-slave3</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.clientPort</name>
+    <value>2181</value>
+  </property>
+  <property>
+        <name>hbase.zookeeper.property.dataDir</name>
+        <value>/tmp/zookeeper</value>
+    </property>
+</configuration>
+
