@@ -18,7 +18,7 @@
 # docker exec -it hadoop-master hadoop fs -copyFromLocal ml-100k /
 
 # docker cp src/edu/movie_data.py hadoop-master:/root/
-# docker exec -it hadoop-master python3 movie_data.py -r hadoop hdfs://hadoop-master:9000/ml-100k/u.data
+# docker exec -it hadoop-master python movie_data.py -r hadoop hdfs://hadoop-master:9000/ml-100k/u.data
 
 #docker cp src/edu/oldgoodmovie.pig hadoop-master:/root/
 #docker exec -it hadoop-master pig -x tez oldgoodmovie.pig
@@ -26,8 +26,8 @@
 #docker cp src/edu/mostworstmovie.pig hadoop-master:/root/
 #docker exec -it hadoop-master pig -x tez mostworstmovie.pig
 
-#docker cp src/edu/lowest_score_movie.py hadoop-master:/root/
-#docker exec -it hadoop-master spark-submit lowest_score_movie.py
+# docker cp src/edu/lowest_score_movie.py hadoop-master:/root/
+# docker exec -it hadoop-master spark-submit lowest_score_movie.py
 
 #docker cp src/edu/movie_reco.py hadoop-master:/root/
 #docker exec -it hadoop-master spark-submit movie_reco.py
@@ -35,21 +35,21 @@
 #docker exec -it hadoop-master hadoop fs -mkdir movies
 #docker exec -it hadoop-master hadoop fs -cp /ml-100k/u.data movies/movie
 
-#docker cp data/Fire_Incidents.parquet hadoop-master:/root/
-#docker exec -it hadoop-master hadoop fs -copyFromLocal Fire_Incidents.parquet /
-#docker cp src/edu/fire_accidents.py hadoop-master:/root/
-#docker exec -it hadoop-master spark-submit --num-executors 3 fire_accidents.py
+# docker cp data/Fire_Incidents.parquet hadoop-master:/root/
+# docker exec -it hadoop-master hadoop fs -copyFromLocal Fire_Incidents.parquet /
+# docker cp src/edu/fire_accidents.py hadoop-master:/root/
+# docker exec -it hadoop-master spark-submit --num-executors 3 fire_accidents.py
 
 ## Word Count
 
 # docker cp data/text-file hadoop-master:/root/
 # docker exec -it hadoop-master hadoop fs -copyFromLocal text-file /
 
-# docker cp src/edu/word_count.py hadoop-master:/root/
-# docker exec -it hadoop-master python3 word_count.py -r hadoop hdfs://hadoop-master:9000/text-file
+docker cp src/edu/word_count.py hadoop-master:/root/
+docker exec -it hadoop-master python word_count.py -r hadoop hdfs://hadoop-master:9000/text-file
 
-#docker cp src/edu/spark_word_count.py hadoop-master:/root/
-#docker exec -it hadoop-master spark-submit --num-executors 2 spark_word_count.py hdfs://hadoop-master:9000/text-file
+# docker cp src/edu/spark_word_count.py hadoop-master:/root/
+# docker exec -it hadoop-master spark-submit --num-executors 2 spark_word_count.py hdfs://hadoop-master:9000/text-file
 
 #docker cp src/edu/load_user_into_hbase.pig hadoop-master:/root/
 #docker exec -it hadoop-master pig -x tez load_user_into_hbase.pig

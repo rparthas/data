@@ -35,7 +35,7 @@ def dataframe_way(ratings_input, movies_input):
     # movie_avg_rated_count = movie_ratings.groupBy("movie_id").count()
     # movie_avg_rating_count = movie_avg_rating.join(movie_avg_rated_count, 'movie_id')
     movie_avg_rating_count = movie_ratings.groupBy("movie_id").agg(count('movie_id').alias('cnt'),
-                                                                   avg('movie_rating').alias('avg_rating'))
+                                                                avg('movie_rating').alias('avg_rating'))
     return movie_avg_rating_count.filter('cnt > 10').join(movies, 'movie_id') \
         .select('movie_name', 'avg_rating', 'cnt').orderBy("avg_rating").take(10)
 

@@ -37,7 +37,9 @@ do
 	i=$(( $i + 1 ))
 done 
 
-docker exec -it hadoop-master /root/start-hadoop.sh
+docker exec -it hadoop-master /usr/local/hadoop/sbin/start-dfs.sh
+docker exec -it hadoop-master /usr/local/hadoop/sbin/start-yarn.sh
+docker exec -it hadoop-master /usr/local/hadoop/sbin/mr-jobhistory-daemon.sh start historyserver
 
 docker exec -it hadoop-master hadoop fs -mkdir /spark-logs
 docker exec -it hadoop-master /usr/local/spark/sbin/start-history-server.sh

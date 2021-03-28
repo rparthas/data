@@ -1,3 +1,5 @@
+from heapq import nlargest
+
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 
@@ -8,9 +10,8 @@ class WordCount(MRJob):
     def steps(self):
         return [
             MRStep(mapper=self.mapper_map_words,
-                    reducer=self.reducer_count_word),
-            MRStep(mapper=self.mapper_reverse_count,
-                reducer=self.top10_count),
+                   reducer=self.reducer_count_word),
+            MRStep(reducer=self.top10_count)
         ]
 
     def mapper_map_words(self, _, line):
@@ -18,16 +19,12 @@ class WordCount(MRJob):
             yield word, 1
 
     def reducer_count_word(self, word, cnt):
-        yield sum(cnt),word
+        yield None, (sum(cnt), word)
 
-    def mapper_reverse_count(self, word, cnt):
-        yield -1 * cnt, word
-
-    def top10_count(self, cnt, words):
-        for word in words:
-            if self.count > 0:
-                self.count -= 1
-                yield word, -1 * cnt
+    def top10_count(self, key, rating_pair):
+        top_rated = nlargest(10, rating_pair)
+        for word_cnt, word in top_rated:
+            yield word, word_cnt
 
 
 if __name__ == '__main__':

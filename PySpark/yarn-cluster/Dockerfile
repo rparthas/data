@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 WORKDIR /root
 
@@ -38,18 +38,17 @@ RUN wget http://archive.apache.org/dist/db/derby/db-derby-10.12.1.1/db-derby-10.
     mv db-derby-10.12.1.1-bin /usr/local/derby && \
     rm db-derby-10.12.1.1-bin.tar.gz
 
-RUN apt update && apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && apt install -y python
-
 RUN wget https://archive.apache.org/dist/hbase/1.4.0/hbase-1.4.0-bin.tar.gz && \
     tar -xvf hbase-1.4.0-bin.tar.gz  && \
     mv hbase-1.4.0 /usr/local/hbase && \
     rm hbase-1.4.0-bin.tar.gz
 
-RUN wget https://bootstrap.pypa.io/get-pip.py && \
-    python3 get-pip.py && \
+RUN apt-get update &&  \
+    apt-get install -y python && \
+    wget https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
+    python get-pip.py && \
     pip install numpy && \
-    pip install mrjob && \
-    apt-get -y install iputils-ping
+    pip install mrjob
 
 # set environment variables
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
@@ -78,13 +77,13 @@ RUN mkdir -p ~/hdfs/namenode && \
 COPY config/* /tmp/
 
 RUN mv /tmp/ssh_config ~/.ssh/config && \
+    chmod 600 ~/.ssh/config && \
     mv /tmp/hadoop-env.sh /usr/local/hadoop/etc/hadoop/hadoop-env.sh && \
     mv /tmp/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml && \
     mv /tmp/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml && \
     mv /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml && \
     mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
     mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves && \
-    mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \
     mv /tmp/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf && \
     mkdir /usr/local/hadoop/tez/conf/ && \
     mv /tmp/tez-site.xml /usr/local/hadoop/tez/conf/tez-site.xml  && \
@@ -94,7 +93,7 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/regionservers /usr/local/hbase/conf/regionservers && \
     mv /tmp/hbase-env.sh /usr/local/hbase/conf/hbase-env.sh
 
-RUN chmod +x ~/start-hadoop.sh && \
+RUN chmod +x $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
     chmod +x $HADOOP_HOME/sbin/start-yarn.sh
 
