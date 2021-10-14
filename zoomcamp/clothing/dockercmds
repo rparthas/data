@@ -1,0 +1,8 @@
+IMAGE_SERVING_LOCAL="tf-serving-clothing-model" 
+docker build -t ${IMAGE_SERVING_LOCAL} -f tf-serving.dockerfile . 
+docker tag ${IMAGE_SERVING_LOCAL} 062515678838.dkr.ecr.us-east-2.amazonaws.com/model-serving:latest
+
+IMAGE_GATEWAY_LOCAL="serving-gateway" 
+docker build -t ${IMAGE_GATEWAY_LOCAL} -f gateway.dockerfile . 
+docker tag ${IMAGE_GATEWAY_LOCAL} 062515678838.dkr.ecr.us-east-2.amazonaws.com/${IMAGE_GATEWAY_LOCAL}:latest
+docker push 062515678838.dkr.ecr.us-east-2.amazonaws.com/${IMAGE_GATEWAY_LOCAL}:latest
