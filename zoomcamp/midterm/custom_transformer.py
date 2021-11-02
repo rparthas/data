@@ -10,7 +10,7 @@ class FeatureSelector(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         scores = mutual_info_regression(X, y, random_state=43)
         self.indices = np.where(scores == 0.0)[0]
-        X = np.delete(X, tuple(self.indices), axis=1)
+        np.delete(X, tuple(self.indices), axis=1)
         return self
 
     def transform(self, X, y=None):
