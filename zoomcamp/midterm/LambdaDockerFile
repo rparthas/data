@@ -1,0 +1,6 @@
+FROM public.ecr.aws/lambda/python:3.7
+RUN pip --no-cache-dir install pipenv
+COPY ["Pipfile", "Pipfile.lock", "./"]
+RUN pipenv install --deploy --system && rm -rf /root/.cache
+COPY ["*.py", "model.pkl","./"]
+CMD [ "lambda_function.lambda_handler" ]
