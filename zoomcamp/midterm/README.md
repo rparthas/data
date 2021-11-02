@@ -29,7 +29,7 @@ Prerequisites : Python, Virtualenv
 ```gunicorn --bind 0.0.0.0:9696 predict_house_price:app```
 
 * Sample Screenshot is provided for testing endpoint
-![Local Endpoint](images/Screenshot 2021-11-02 at 7.33.22 AM.png)
+![Local Endpoint](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/Screenshot 2021-11-02 at 7.33.22 AM.png)
 
 ### Sample Data
 ```json
@@ -140,21 +140,21 @@ Prerequisites : AWS Account, aws-cli
 ## Lambda
 * Navigate to Lambda in AWS console
 * Create Lambda function using the following screenshot
-![Lambda Creation](images/Screenshot 2021-11-02 at 8.02.17 AM.png)
+![Lambda Creation](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/Screenshot 2021-11-02 at 8.02.17 AM.png)
 * Once created edit the configuration to increase the timeout and memory
-![Lambda Configuration](images/Screenshot 2021-11-02 at 8.24.37 AM.png)
+![Lambda Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/Screenshot 2021-11-02 at 8.24.37 AM.png)
 * Test the lambda function by providing the same input as given in Running section
 
 ## API Gateway
 * Navigate to API gateway in AWS console
 * Provide inputs similar to screenshot below
-![API Gateway](images/Screenshot 2021-11-02 at 8.25.28 AM.png)
+![API Gateway](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/Screenshot 2021-11-02 at 8.25.28 AM.png)
 * In the next screen add the method as POST and link the created lambda function
-![Configuration](images/Screenshot 2021-11-02 at 8.26.39 AM.png)
+![Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/Screenshot 2021-11-02 at 8.26.39 AM.png)
 * Once it is done, click on Test and provide the input to test the gateway
 * Once it is verified, Click on deploy to a new stage (prod)
 * Use the generated url to verify if the endpoint is working fine
-![Endpoint](images/Screenshot 2021-11-02 at 8.38.08 AM.png)
+![Endpoint](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/Screenshot 2021-11-02 at 8.38.08 AM.png)
 
 # Cleaning up
 * Clean the gateway,lambda and ECR
