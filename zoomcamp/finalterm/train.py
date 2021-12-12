@@ -38,10 +38,14 @@ preprocessor = ColumnTransformer([
     remainder='drop'
 )
 
+xgb_model = XGBClassifier(use_label_encoder=False,n_jobs=-1,
+                          subsample = 0.6, n_estimators= 200, min_child_weight= 3,max_depth= 4, 
+                          learning_rate= 0.1, colsample_bytree = 0.4)
+
 pipe = Pipeline([
     ('preprocessor', preprocessor),
     ('sm', sm),
-    ('model', XGBClassifier(use_label_encoder=False, n_jobs=-1))
+    ('model', xgb_model)
 ])
 
 pipe.fit(X, y)
