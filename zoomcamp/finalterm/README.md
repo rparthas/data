@@ -124,6 +124,7 @@ Prerequisites : AWS Account, aws-cli
 * Run ```docker build -f LambdaDockerFile . -t loan-status``` to build the lambda image
 
 ## Elastic Container Registry
+* Run ```aws configure``` to configure secret key, access key and region
 * Run ```aws ecr create-repository --repository-name loan-status``` to create the ECR repository in aws
 * Copy the repository name from the output ```arn:aws:ecr:us-east-2:<AccountNumber>:repository/loan-status```
 * Run ```aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin <AccountNumber>.dkr.ecr.us-east-2.amazonaws.com``` to login
@@ -133,21 +134,23 @@ Prerequisites : AWS Account, aws-cli
 ## Lambda
 * Navigate to Lambda in AWS console
 * Create Lambda function using the following screenshot
-![Lambda Creation](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/2.png)
+![Lambda Creation](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/lambda_function.png)
 * Once created edit the configuration to increase the timeout and memory
-![Lambda Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/3.png)
+![Lambda Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/function_configuration.png)
 * Test the lambda function by providing the same input as given in Running section
 
 ## API Gateway
 * Navigate to API gateway in AWS console
+* Click on Build under Rest API
 * Provide inputs similar to screenshot below
-![API Gateway](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/4.png)
-* In the next screen add the method as POST and link the created lambda function
-![Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/5.png)
+![API Gateway](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/api_gateway_create.png)
+* In the next screen Click on Actions -> Create Method and choose the method as POST in dropdown
+* Link the created lambda function similar to below screenshot
+![Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/lambda_api_gateway.png)
 * Once it is done, click on Test and provide the input to test the gateway
-* Once it is verified, Click on deploy to a new stage (prod)
+* Once it is verified, Click on Actions -> Deploy API to deploy to a new stage (prod)
 * Use the generated url to verify if the endpoint is working fine
-![Endpoint](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/6.png)
+![Endpoint](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/api_testing.png)
 
 # Cleaning up
 * Clean the gateway,lambda and ECR
