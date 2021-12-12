@@ -1,0 +1,6 @@
+model.pkl
+logs.log
+final_venv
+mlruns
+my_submission_file.csv
+data/submission.csv
