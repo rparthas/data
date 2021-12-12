@@ -136,7 +136,7 @@ Prerequisites : AWS Account, aws-cli
 * Create Lambda function using the following screenshot
 ![Lambda Creation](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/lambda_function.png)
 * Once created edit the configuration to increase the timeout and memory
-![Lambda Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/function_configuration.png)
+![Lambda Configuration](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/function_config.png)
 * Test the lambda function by providing the same input as given in Running section
 
 ## API Gateway
