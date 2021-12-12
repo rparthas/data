@@ -68,11 +68,46 @@ Prerequisites : Python, Virtualenv
 ```gunicorn --bind 0.0.0.0:9696 predict_loan_status:app```
 
 * Sample Screenshot is provided for testing endpoint
-![Local Endpoint](https://github.com/rparthas/data/blob/master/zoomcamp/midterm/images/1.png)
+![Local Endpoint](https://github.com/rparthas/data/blob/master/zoomcamp/finalterm/images/local_endpoint.png)
 
 ### Sample Data
 ```json
-
+{
+    "ID": 29092009,
+    "Loan Amount": 19989,
+    "Funded Amount": 8964,
+    "Funded Amount Investor": 9399.521396,
+    "Term": 59,
+    "Batch Enrolled": "BAT3873588",
+    "Interest Rate": 12.58098442,
+    "Grade": "A",
+    "Sub Grade": "B2",
+    "Employment Duration": "MORTGAGE",
+    "Home Ownership": 211833.6129,
+    "Verification Status": "Source Verified",
+    "Payment Plan": "n",
+    "Loan Title": "Credit card refinancing",
+    "Debit to Income": 35.76157679,
+    "Delinquency - two years": 1,
+    "Inquires - six months": 0,
+    "Open Account": 12,
+    "Public Record": 0,
+    "Revolving Balance": 10286,
+    "Revolving Utilities": 58.54007131,
+    "Total Accounts": 41,
+    "Initial List Status": "w",
+    "Total Received Interest": 44.2672439,
+    "Total Received Late Fee": 26.7526997,
+    "Recoveries": 3.746518944,
+    "Collection Recovery Fee": 0.476414667,
+    "Collection 12 months Medical": 0,
+    "Application Type": "INDIVIDUAL",
+    "Last week Pay": 102,
+    "Accounts Delinquent": 0,
+    "Total Collection Amount": 31,
+    "Total Current Balance": 470224,
+    "Total Revolving Credit Limit": 9801
+}
 ```
 
 # Deploy in Docker

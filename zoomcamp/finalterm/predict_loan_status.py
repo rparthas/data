@@ -19,8 +19,9 @@ def predict():
 
 
 def predict_loan_status(data):
-    y_pred = model.predict(pd.DataFrame.from_dict([data], orient='columns'))
-    return {'status': float(y_pred)}
+    input_df = pd.DataFrame.from_dict([data], orient='columns')
+    y_pred = model.predict(input_df)
+    return {'status': 'Defaulter' if float(y_pred) == 1.0 else 'Non Defaulter'}
 
 
 if __name__ == '__main__':
