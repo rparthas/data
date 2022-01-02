@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark import SparkConf
 
 
-class Demo():
+class Demo:
     def __init__(self):
         self.spark = SparkSession.builder.master("local"). \
             appName("Demo").config(conf=SparkConf()).getOrCreate()
