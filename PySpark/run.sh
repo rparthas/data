@@ -45,11 +45,14 @@
 # docker cp data/text-file hadoop-master:/root/
 # docker exec -it hadoop-master hadoop fs -copyFromLocal text-file /
 
-docker cp src/edu/word_count.py hadoop-master:/root/
-docker exec -it hadoop-master python word_count.py -r hadoop hdfs://hadoop-master:9000/text-file
+#docker cp src/edu/word_count.py hadoop-master:/root/
+#docker exec -it hadoop-master python word_count.py -r hadoop hdfs://hadoop-master:9000/text-file
 
 # docker cp src/edu/spark_word_count.py hadoop-master:/root/
 # docker exec -it hadoop-master spark-submit --num-executors 2 spark_word_count.py hdfs://hadoop-master:9000/text-file
 
 #docker cp src/edu/load_user_into_hbase.pig hadoop-master:/root/
 #docker exec -it hadoop-master pig -x tez load_user_into_hbase.pig
+
+## Zeppelin
+docker run -p 8080:8080 --rm -v $PWD/logs:/logs -v $PWD/notebook:/notebook -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' -v $PWD/data:/data  --name zeppelin apache/zeppelin:0.9.0
