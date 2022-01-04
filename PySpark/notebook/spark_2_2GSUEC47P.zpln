@@ -1,0 +1,837 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\nfrom pyspark.sql.types import *\nfire_schema \u003d StructType([StructField(\u0027CallNumber\u0027, IntegerType(), True),\n                StructField(\u0027UnitID\u0027, StringType(), True),\n                StructField(\u0027IncidentNumber\u0027, IntegerType(), True),\n                StructField(\u0027CallType\u0027, StringType(), True),                  \n                StructField(\u0027CallDate\u0027, StringType(), True),      \n                StructField(\u0027WatchDate\u0027, StringType(), True),\n                StructField(\u0027CallFinalDisposition\u0027, StringType(), True),\n                StructField(\u0027AvailableDtTm\u0027, StringType(), True),\n                StructField(\u0027Address\u0027, StringType(), True),       \n                StructField(\u0027City\u0027, StringType(), True),       \n                StructField(\u0027Zipcode\u0027, IntegerType(), True),       \n                StructField(\u0027Battalion\u0027, StringType(), True),                 \n                StructField(\u0027StationArea\u0027, StringType(), True),       \n                StructField(\u0027Box\u0027, StringType(), True),       \n                StructField(\u0027OriginalPriority\u0027, StringType(), True),       \n                StructField(\u0027Priority\u0027, StringType(), True),       \n                StructField(\u0027FinalPriority\u0027, IntegerType(), True),       \n                StructField(\u0027ALSUnit\u0027, BooleanType(), True),       \n                StructField(\u0027CallTypeGroup\u0027, StringType(), True),\n                StructField(\u0027NumAlarms\u0027, IntegerType(), True),\n                StructField(\u0027UnitType\u0027, StringType(), True),\n                StructField(\u0027UnitSequenceInCallDispatch\u0027, IntegerType(), True),\n                StructField(\u0027FirePreventionDistrict\u0027, StringType(), True),\n                StructField(\u0027SupervisorDistrict\u0027, StringType(), True),\n                StructField(\u0027Neighborhood\u0027, StringType(), True),\n                StructField(\u0027Location\u0027, StringType(), True),\n                StructField(\u0027RowID\u0027, StringType(), True),\n                StructField(\u0027Delay\u0027, FloatType(), True)])",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:18:11.934",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269320826_2102391746",
+      "id": "paragraph_1641269320826_2102391746",
+      "dateCreated": "2022-01-04 04:08:40.826",
+      "dateStarted": "2022-01-04 04:18:11.949",
+      "dateFinished": "2022-01-04 04:18:12.171",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_df \u003d spark.read.option(\"header\",True).schema(fire_schema).csv(\"/data/sf-fire-calls.csv\")\nfire_df.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:18:12.250",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+------+--------------+----------------+----------+----------+--------------------+--------------------+--------------------+----+-------+---------+-----------+----+----------------+--------+-------------+-------+-------------+---------+--------+--------------------------+----------------------+------------------+--------------------+--------------------+-------------+---------+\n|CallNumber|UnitID|IncidentNumber|        CallType|  CallDate| WatchDate|CallFinalDisposition|       AvailableDtTm|             Address|City|Zipcode|Battalion|StationArea| Box|OriginalPriority|Priority|FinalPriority|ALSUnit|CallTypeGroup|NumAlarms|UnitType|UnitSequenceInCallDispatch|FirePreventionDistrict|SupervisorDistrict|        Neighborhood|            Location|        RowID|    Delay|\n+----------+------+--------------+----------------+----------+----------+--------------------+--------------------+--------------------+----+-------+---------+-----------+----+----------------+--------+-------------+-------+-------------+---------+--------+--------------------------+----------------------+------------------+--------------------+--------------------+-------------+---------+\n|  20110016|   T13|       2003235|  Structure Fire|01/11/2002|01/10/2002|               Other|01/11/2002 01:51:...|2000 Block of CAL...|  SF|  94109|      B04|         38|3362|               3|       3|            3|  false|         null|        1|   TRUCK|                         2|                     4|                 5|     Pacific Heights|(37.7895840679362...|020110016-T13|     2.95|\n|  20110022|   M17|       2003241|Medical Incident|01/11/2002|01/10/2002|               Other|01/11/2002 03:01:...|0 Block of SILVER...|  SF|  94124|      B10|         42|6495|               3|       3|            3|   true|         null|        1|   MEDIC|                         1|                    10|                10|Bayview Hunters P...|(37.7337623673897...|020110022-M17|      4.7|\n|  20110023|   M41|       2003242|Medical Incident|01/11/2002|01/10/2002|               Other|01/11/2002 02:39:...|MARKET ST/MCALLIS...|  SF|  94102|      B03|         01|1455|               3|       3|            3|   true|         null|        1|   MEDIC|                         2|                     3|                 6|          Tenderloin|(37.7811772186856...|020110023-M41|2.4333334|\n|  20110032|   E11|       2003250|    Vehicle Fire|01/11/2002|01/10/2002|               Other|01/11/2002 04:16:...|APPLETON AV/MISSI...|  SF|  94110|      B06|         32|5626|               3|       3|            3|  false|         null|        1|  ENGINE|                         1|                     6|                 9|      Bernal Heights|(37.7388432849018...|020110032-E11|      1.5|\n|  20110043|   B04|       2003259|          Alarms|01/11/2002|01/10/2002|               Other|01/11/2002 06:01:...|1400 Block of SUT...|  SF|  94109|      B04|         03|3223|               3|       3|            3|  false|         null|        1|   CHIEF|                         2|                     4|                 2|    Western Addition|(37.7872890372638...|020110043-B04|3.4833333|\n|  20110072|   T08|       2003279|  Structure Fire|01/11/2002|01/11/2002|               Other|01/11/2002 08:03:...|  BEALE ST/FOLSOM ST|  SF|  94105|      B03|         35|2122|               3|       3|            3|  false|         null|        1|   TRUCK|                         2|                     3|                 6|Financial Distric...|(37.7886866619654...|020110072-T08|     1.75|\n|  20110125|   E33|       2003301|          Alarms|01/11/2002|01/11/2002|               Other|01/11/2002 09:46:...|0 Block of FARALL...|  SF|  94112|      B09|         33|8324|               3|       3|            3|  false|         null|        1|  ENGINE|                         2|                     9|                11|Oceanview/Merced/...|(37.7140353531157...|020110125-E33|2.7166667|\n|  20110130|   E36|       2003304|          Alarms|01/11/2002|01/11/2002|               Other|01/11/2002 09:58:...|600 Block of POLK ST|  SF|  94102|      B02|         03|3114|               3|       3|            3|  false|         null|        1|  ENGINE|                         1|                     2|                 6|          Tenderloin|(37.7826266328595...|020110130-E36|1.7833333|\n|  20110197|   E05|       2003343|Medical Incident|01/11/2002|01/11/2002|               Other|01/11/2002 12:06:...|1500 Block of WEB...|  SF|  94115|      B04|         05|3513|               3|       3|            3|  false|         null|        1|  ENGINE|                         1|                     4|                 5|           Japantown|(37.784958590666,...|020110197-E05|1.5166667|\n|  20110215|   E06|       2003348|Medical Incident|01/11/2002|01/11/2002|               Other|01/11/2002 01:08:...|DIAMOND ST/MARKET ST|  SF|  94114|      B05|         06|5415|               3|       3|            3|  false|         null|        1|  ENGINE|                         1|                     5|                 8| Castro/Upper Market|(37.7618954753708...|020110215-E06|2.7666667|\n+----------+------+--------------+----------------+----------+----------+--------------------+--------------------+--------------------+----+-------+---------+-----------+----+----------------+--------+-------------+-------+-------------+---------+--------+--------------------------+----------------------+------------------+--------------------+--------------------+-------------+---------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d22"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269397535_1870821632",
+      "id": "paragraph_1641269397535_1870821632",
+      "dateCreated": "2022-01-04 04:09:57.535",
+      "dateStarted": "2022-01-04 04:18:12.273",
+      "dateFinished": "2022-01-04 04:18:12.605",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_df.write.parquet(\u0027/data/sf-fire-calls.parquet\u0027)\nfire_df.write.format(\"parquet\").saveAsTable(\"sf_fire\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:18:12.674",
+      "progress": 33,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mPy4JJavaError\u001b[0m                             Traceback (most recent call last)\n\u001b[0;32m~opt/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/utils.py\u001b[0m in \u001b[0;36mdeco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m     62\u001b[0m         \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---\u003e 63\u001b[0;31m             \u001b[0;32mreturn\u001b[0m \u001b[0mf\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0ma\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkw\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     64\u001b[0m         \u001b[0;32mexcept\u001b[0m \u001b[0mpy4j\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mprotocol\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mPy4JJavaError\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0me\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m~opt/zeppelin/interpreter/spark/pyspark/py4j-0.10.7-src.zip/py4j/protocol.py\u001b[0m in \u001b[0;36mget_return_value\u001b[0;34m(answer, gateway_client, target_id, name)\u001b[0m\n\u001b[1;32m    327\u001b[0m                     \u001b[0;34m\"An error occurred while calling {0}{1}{2}.\\n\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 328\u001b[0;31m                     format(target_id, \".\", name), value)\n\u001b[0m\u001b[1;32m    329\u001b[0m             \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mPy4JJavaError\u001b[0m: An error occurred while calling o313.saveAsTable.\n: org.apache.spark.sql.AnalysisException: Table `sf_fire` already exists.;\n\tat org.apache.spark.sql.DataFrameWriter.saveAsTable(DataFrameWriter.scala:424)\n\tat org.apache.spark.sql.DataFrameWriter.saveAsTable(DataFrameWriter.scala:409)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:238)\n\tat java.lang.Thread.run(Thread.java:748)\n\n\nDuring handling of the above exception, another exception occurred:\n\n\u001b[0;31mAnalysisException\u001b[0m                         Traceback (most recent call last)\n\u001b[0;32m\u003cipython-input-128-9ec422861469\u003e\u001b[0m in \u001b[0;36m\u003cmodule\u003e\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mfire_df\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwrite\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mparquet\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\u0027/data/sf-fire-calls.parquet\u0027\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----\u003e 2\u001b[0;31m \u001b[0mfire_df\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwrite\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"parquet\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msaveAsTable\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"sf_fire\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\n\u001b[0;32m~opt/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/readwriter.py\u001b[0m in \u001b[0;36msaveAsTable\u001b[0;34m(self, name, format, mode, partitionBy, **options)\u001b[0m\n\u001b[1;32m    776\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mformat\u001b[0m \u001b[0;32mis\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    777\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 778\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_jwrite\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msaveAsTable\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mname\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    779\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    780\u001b[0m     \u001b[0;34m@\u001b[0m\u001b[0msince\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;36m1.4\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m~opt/zeppelin/interpreter/spark/pyspark/py4j-0.10.7-src.zip/py4j/java_gateway.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m   1255\u001b[0m         \u001b[0manswer\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mgateway_client\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msend_command\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mcommand\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1256\u001b[0m         return_value \u003d get_return_value(\n\u001b[0;32m-\u003e 1257\u001b[0;31m             answer, self.gateway_client, self.target_id, self.name)\n\u001b[0m\u001b[1;32m   1258\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1259\u001b[0m         \u001b[0;32mfor\u001b[0m \u001b[0mtemp_arg\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mtemp_args\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m~opt/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/utils.py\u001b[0m in \u001b[0;36mdeco\u001b[0;34m(*a, **kw)\u001b[0m\n\u001b[1;32m     67\u001b[0m                                              e.java_exception.getStackTrace()))\n\u001b[1;32m     68\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstartswith\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\u0027org.apache.spark.sql.AnalysisException: \u0027\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---\u003e 69\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mAnalysisException\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\u0027: \u0027\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstackTrace\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     70\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstartswith\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\u0027org.apache.spark.sql.catalyst.analysis\u0027\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     71\u001b[0m                 \u001b[0;32mraise\u001b[0m \u001b[0mAnalysisException\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msplit\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\u0027: \u0027\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mstackTrace\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mAnalysisException\u001b[0m: \u0027Table `sf_fire` already exists.;\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d23"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269400719_1021806950",
+      "id": "paragraph_1641269400719_1021806950",
+      "dateCreated": "2022-01-04 04:10:00.719",
+      "dateStarted": "2022-01-04 04:18:12.690",
+      "dateFinished": "2022-01-04 04:18:14.492",
+      "status": "ERROR"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"select UnitID from sf_fire limit 10\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:11:38.735",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+\n|UnitID|\n+------+\n|   M43|\n|   B03|\n|   T08|\n|   M07|\n|   M08|\n|   E36|\n|   E22|\n|   M17|\n|   M36|\n|   E05|\n+------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d3"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269462551_1129495395",
+      "id": "paragraph_1641269462551_1129495395",
+      "dateCreated": "2022-01-04 04:11:02.551",
+      "dateStarted": "2022-01-04 04:11:38.747",
+      "dateFinished": "2022-01-04 04:11:39.232",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nimport pyspark.sql.functions as F\nfire_df.select(\"CallType\").where(F.col(\"CallType\").isNotNull()).agg(F.countDistinct(\"CallType\").alias(\"calls\")).show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:12:05.261",
+      "progress": 91,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----+\n|calls|\n+-----+\n|   30|\n+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d4"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269498746_1868132679",
+      "id": "paragraph_1641269498746_1868132679",
+      "dateCreated": "2022-01-04 04:11:38.747",
+      "dateStarted": "2022-01-04 04:12:05.273",
+      "dateFinished": "2022-01-04 04:12:07.411",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfew_fire_df \u003d (fire_df\n  .select(\"IncidentNumber\", \"AvailableDtTm\", \"CallType\") \n  .where(F.col(\"CallType\") !\u003d \"Medical Incident\"))\nfew_fire_df.show(5, truncate\u003dFalse)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:12:46.827",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------+----------------------+--------------+\n|IncidentNumber|AvailableDtTm         |CallType      |\n+--------------+----------------------+--------------+\n|2003235       |01/11/2002 01:51:44 AM|Structure Fire|\n|2003250       |01/11/2002 04:16:46 AM|Vehicle Fire  |\n|2003259       |01/11/2002 06:01:58 AM|Alarms        |\n|2003279       |01/11/2002 08:03:26 AM|Structure Fire|\n|2003301       |01/11/2002 09:46:44 AM|Alarms        |\n+--------------+----------------------+--------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d5"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269509675_823752503",
+      "id": "paragraph_1641269509675_823752503",
+      "dateCreated": "2022-01-04 04:11:49.675",
+      "dateStarted": "2022-01-04 04:12:46.842",
+      "dateFinished": "2022-01-04 04:12:47.376",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nnew_fire_df \u003d fire_df.withColumnRenamed(\"Delay\", \"ResponseDelayedinMins\")\n(new_fire_df\n  .select(\"ResponseDelayedinMins\")\n  .where(F.col(\"ResponseDelayedinMins\") \u003e 5)\n  .show(5, False))",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:13:11.373",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------------------+\n|ResponseDelayedinMins|\n+---------------------+\n|5.35                 |\n|6.25                 |\n|5.2                  |\n|5.6                  |\n|7.25                 |\n+---------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d6"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269566841_729063161",
+      "id": "paragraph_1641269566841_729063161",
+      "dateCreated": "2022-01-04 04:12:46.841",
+      "dateStarted": "2022-01-04 04:13:11.390",
+      "dateFinished": "2022-01-04 04:13:11.776",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_ts_df \u003d (new_fire_df\n  .withColumn(\"IncidentDate\", F.to_timestamp(\"CallDate\", \"MM/dd/yyyy\"))\n  .drop(\"CallDate\") \n  .withColumn(\"OnWatchDate\", F.to_timestamp(\"WatchDate\", \"MM/dd/yyyy\"))\n  .drop(\"WatchDate\") \n  .withColumn(\"AvailableDtTS\", F.to_timestamp(F.col(\"AvailableDtTm\"), \n  \"MM/dd/yyyy hh:mm:ss a\"))\n  .drop(\"AvailableDtTm\"))",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:13:27.792",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269591388_146008178",
+      "id": "paragraph_1641269591388_146008178",
+      "dateCreated": "2022-01-04 04:13:11.388",
+      "dateStarted": "2022-01-04 04:13:27.807",
+      "dateFinished": "2022-01-04 04:13:28.082",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n(fire_ts_df\n  .select(\"IncidentDate\", \"OnWatchDate\", \"AvailableDtTS\")\n  .show(5, False))",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:13:45.798",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------------------+-------------------+-------------------+\n|IncidentDate       |OnWatchDate        |AvailableDtTS      |\n+-------------------+-------------------+-------------------+\n|2002-01-11 00:00:00|2002-01-10 00:00:00|2002-01-11 01:51:44|\n|2002-01-11 00:00:00|2002-01-10 00:00:00|2002-01-11 03:01:18|\n|2002-01-11 00:00:00|2002-01-10 00:00:00|2002-01-11 02:39:50|\n|2002-01-11 00:00:00|2002-01-10 00:00:00|2002-01-11 04:16:46|\n|2002-01-11 00:00:00|2002-01-10 00:00:00|2002-01-11 06:01:58|\n+-------------------+-------------------+-------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269607806_1194939320",
+      "id": "paragraph_1641269607806_1194939320",
+      "dateCreated": "2022-01-04 04:13:27.807",
+      "dateStarted": "2022-01-04 04:13:45.811",
+      "dateFinished": "2022-01-04 04:13:46.196",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n(fire_ts_df\n  .select(F.year(\u0027IncidentDate\u0027))\n  .distinct()\n  .orderBy(F.year(\u0027IncidentDate\u0027))\n  .show())",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:14:07.350",
+      "progress": 2,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+\n|year(IncidentDate)|\n+------------------+\n|              2000|\n|              2001|\n|              2002|\n|              2003|\n|              2004|\n|              2005|\n|              2006|\n|              2007|\n|              2008|\n|              2009|\n|              2010|\n|              2011|\n|              2012|\n|              2013|\n|              2014|\n|              2015|\n|              2016|\n|              2017|\n|              2018|\n+------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d8"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269625810_230981663",
+      "id": "paragraph_1641269625810_230981663",
+      "dateCreated": "2022-01-04 04:13:45.810",
+      "dateStarted": "2022-01-04 04:14:07.366",
+      "dateFinished": "2022-01-04 04:14:08.871",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n(fire_ts_df\n  .select(\"CallType\")\n  .where(F.col(\"CallType\").isNotNull())\n  .groupBy(\"CallType\")\n  .count()\n  .orderBy(\"count\", ascending\u003dFalse)\n  .show(n\u003d10, truncate\u003dFalse))",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:14:25.451",
+      "progress": 94,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------------------------------+------+\n|CallType                       |count |\n+-------------------------------+------+\n|Medical Incident               |113794|\n|Structure Fire                 |23319 |\n|Alarms                         |19406 |\n|Traffic Collision              |7013  |\n|Citizen Assist / Service Call  |2524  |\n|Other                          |2166  |\n|Outside Fire                   |2094  |\n|Vehicle Fire                   |854   |\n|Gas Leak (Natural and LP Gases)|764   |\n|Water Rescue                   |755   |\n+-------------------------------+------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d9"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269647364_317118317",
+      "id": "paragraph_1641269647364_317118317",
+      "dateCreated": "2022-01-04 04:14:07.364",
+      "dateStarted": "2022-01-04 04:14:25.465",
+      "dateFinished": "2022-01-04 04:14:26.508",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_ts_df.select(F.sum(\"NumAlarms\").alias(\"alarms\"),F.avg(\"ResponseDelayedinMins\"),\n    F.min(\"ResponseDelayedinMins\"), F.max(\"ResponseDelayedinMins\")).show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:14:41.479",
+      "progress": 14,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+--------------------------+--------------------------+--------------------------+\n|alarms|avg(ResponseDelayedinMins)|min(ResponseDelayedinMins)|max(ResponseDelayedinMins)|\n+------+--------------------------+--------------------------+--------------------------+\n|176170|         3.892364154521585|               0.016666668|                   1844.55|\n+------+--------------------------+--------------------------+--------------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d10"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269665464_1050331551",
+      "id": "paragraph_1641269665464_1050331551",
+      "dateCreated": "2022-01-04 04:14:25.464",
+      "dateStarted": "2022-01-04 04:14:41.489",
+      "dateFinished": "2022-01-04 04:14:42.122",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_ts_df.cache()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:14:57.627",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "DataFrame[CallNumber: int, UnitID: string, IncidentNumber: int, CallType: string, CallFinalDisposition: string, Address: string, City: string, Zipcode: int, Battalion: string, StationArea: string, Box: string, OriginalPriority: string, Priority: string, FinalPriority: int, ALSUnit: boolean, CallTypeGroup: string, NumAlarms: int, UnitType: string, UnitSequenceInCallDispatch: int, FirePreventionDistrict: string, SupervisorDistrict: string, Neighborhood: string, Location: string, RowID: string, ResponseDelayedinMins: float, IncidentDate: timestamp, OnWatchDate: timestamp, AvailableDtTS: timestamp]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269677007_374851809",
+      "id": "paragraph_1641269677007_374851809",
+      "dateCreated": "2022-01-04 04:14:37.007",
+      "dateStarted": "2022-01-04 04:14:57.639",
+      "dateFinished": "2022-01-04 04:14:57.916",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_ts_df.where(F.year(\"IncidentDate\") \u003d\u003d \u00272018\u0027).select(\"CallType\").groupBy(\"CallType\").agg(F.count(\"CallType\").alias(\"calls\")).orderBy(\u0027calls\u0027,ascending\u003dFalse).show(100,False)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:15:15.152",
+      "progress": 22,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------------------------------+-----+\n|CallType                       |calls|\n+-------------------------------+-----+\n|Medical Incident               |7004 |\n|Alarms                         |1144 |\n|Structure Fire                 |906  |\n|Traffic Collision              |433  |\n|Outside Fire                   |153  |\n|Other                          |114  |\n|Citizen Assist / Service Call  |113  |\n|Gas Leak (Natural and LP Gases)|69   |\n|Water Rescue                   |43   |\n|Elevator / Escalator Rescue    |36   |\n|Electrical Hazard              |30   |\n|Vehicle Fire                   |28   |\n|Smoke Investigation (Outside)  |28   |\n|Fuel Spill                     |10   |\n|Odor (Strange / Unknown)       |10   |\n|HazMat                         |5    |\n|Train / Rail Incident          |5    |\n|Suspicious Package             |3    |\n|Explosion                      |1    |\n|Assist Police                  |1    |\n+-------------------------------+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d11"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269697639_2073638702",
+      "id": "paragraph_1641269697639_2073638702",
+      "dateCreated": "2022-01-04 04:14:57.639",
+      "dateStarted": "2022-01-04 04:15:15.166",
+      "dateFinished": "2022-01-04 04:15:18.569",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_ts_df.where(F.year(\"IncidentDate\") \u003d\u003d \u00272018\u0027).select(\"NumAlarms\",F.month(\u0027IncidentDate\u0027).alias(\"month\")).groupBy(\u0027month\u0027).agg(F.sum(\u0027NumAlarms\u0027).alias(\u0027Alarms\u0027)).orderBy(\u0027Alarms\u0027,ascending\u003dFalse).take(1)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:15:26.712",
+      "progress": 83,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Row(month\u003d10, Alarms\u003d1070)]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d12"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269715164_255771068",
+      "id": "paragraph_1641269715164_255771068",
+      "dateCreated": "2022-01-04 04:15:15.164",
+      "dateStarted": "2022-01-04 04:15:26.724",
+      "dateFinished": "2022-01-04 04:15:27.811",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfire_ts_df.explain(True)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:15:46.303",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003d\u003d Parsed Logical Plan \u003d\u003d\nProject [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields]\n+- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, ... 5 more fields]\n   +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, ... 4 more fields]\n      +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, ... 5 more fields]\n         +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, ... 4 more fields]\n            +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallDate#4, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, ... 5 more fields]\n               +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallDate#4, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, ... 4 more fields]\n                  +- Relation[CallNumber#0,UnitID#1,IncidentNumber#2,CallType#3,CallDate#4,WatchDate#5,CallFinalDisposition#6,AvailableDtTm#7,Address#8,City#9,Zipcode#10,Battalion#11,StationArea#12,Box#13,OriginalPriority#14,Priority#15,FinalPriority#16,ALSUnit#17,CallTypeGroup#18,NumAlarms#19,UnitType#20,UnitSequenceInCallDispatch#21,FirePreventionDistrict#22,SupervisorDistrict#23,... 4 more fields] csv\n\n\u003d\u003d Analyzed Logical Plan \u003d\u003d\nCallNumber: int, UnitID: string, IncidentNumber: int, CallType: string, CallFinalDisposition: string, Address: string, City: string, Zipcode: int, Battalion: string, StationArea: string, Box: string, OriginalPriority: string, Priority: string, FinalPriority: int, ALSUnit: boolean, CallTypeGroup: string, NumAlarms: int, UnitType: string, UnitSequenceInCallDispatch: int, FirePreventionDistrict: string, SupervisorDistrict: string, Neighborhood: string, Location: string, RowID: string, ... 4 more fields\nProject [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields]\n+- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, ... 5 more fields]\n   +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, ... 4 more fields]\n      +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, ... 5 more fields]\n         +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, ... 4 more fields]\n            +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallDate#4, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, ... 5 more fields]\n               +- Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallDate#4, WatchDate#5, CallFinalDisposition#6, AvailableDtTm#7, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, ... 4 more fields]\n                  +- Relation[CallNumber#0,UnitID#1,IncidentNumber#2,CallType#3,CallDate#4,WatchDate#5,CallFinalDisposition#6,AvailableDtTm#7,Address#8,City#9,Zipcode#10,Battalion#11,StationArea#12,Box#13,OriginalPriority#14,Priority#15,FinalPriority#16,ALSUnit#17,CallTypeGroup#18,NumAlarms#19,UnitType#20,UnitSequenceInCallDispatch#21,FirePreventionDistrict#22,SupervisorDistrict#23,... 4 more fields] csv\n\n\u003d\u003d Optimized Logical Plan \u003d\u003d\nInMemoryRelation [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields], StorageLevel(disk, memory, deserialized, 1 replicas)\n   +- *(1) Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields]\n      +- *(1) FileScan csv [CallNumber#0,UnitID#1,IncidentNumber#2,CallType#3,CallDate#4,WatchDate#5,CallFinalDisposition#6,AvailableDtTm#7,Address#8,City#9,Zipcode#10,Battalion#11,StationArea#12,Box#13,OriginalPriority#14,Priority#15,FinalPriority#16,ALSUnit#17,CallTypeGroup#18,NumAlarms#19,UnitType#20,UnitSequenceInCallDispatch#21,FirePreventionDistrict#22,SupervisorDistrict#23,... 4 more fields] Batched: false, Format: CSV, Location: InMemoryFileIndex[file:/data/sf-fire-calls.csv], PartitionFilters: [], PushedFilters: [], ReadSchema: struct\u003cCallNumber:int,UnitID:string,IncidentNumber:int,CallType:string,CallDate:string,WatchDate:...\n\n\u003d\u003d Physical Plan \u003d\u003d\nInMemoryTableScan [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields]\n   +- InMemoryRelation [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields], StorageLevel(disk, memory, deserialized, 1 replicas)\n         +- *(1) Project [CallNumber#0, UnitID#1, IncidentNumber#2, CallType#3, CallFinalDisposition#6, Address#8, City#9, Zipcode#10, Battalion#11, StationArea#12, Box#13, OriginalPriority#14, Priority#15, FinalPriority#16, ALSUnit#17, CallTypeGroup#18, NumAlarms#19, UnitType#20, UnitSequenceInCallDispatch#21, FirePreventionDistrict#22, SupervisorDistrict#23, Neighborhood#24, Location#25, RowID#26, ... 4 more fields]\n            +- *(1) FileScan csv [CallNumber#0,UnitID#1,IncidentNumber#2,CallType#3,CallDate#4,WatchDate#5,CallFinalDisposition#6,AvailableDtTm#7,Address#8,City#9,Zipcode#10,Battalion#11,StationArea#12,Box#13,OriginalPriority#14,Priority#15,FinalPriority#16,ALSUnit#17,CallTypeGroup#18,NumAlarms#19,UnitType#20,UnitSequenceInCallDispatch#21,FirePreventionDistrict#22,SupervisorDistrict#23,... 4 more fields] Batched: false, Format: CSV, Location: InMemoryFileIndex[file:/data/sf-fire-calls.csv], PartitionFilters: [], PushedFilters: [], ReadSchema: struct\u003cCallNumber:int,UnitID:string,IncidentNumber:int,CallType:string,CallDate:string,WatchDate:...\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269726723_1440797251",
+      "id": "paragraph_1641269726723_1440797251",
+      "dateCreated": "2022-01-04 04:15:26.723",
+      "dateStarted": "2022-01-04 04:15:46.314",
+      "dateFinished": "2022-01-04 04:15:46.592",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:15:46.314",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269746314_550835753",
+      "id": "paragraph_1641269746314_550835753",
+      "dateCreated": "2022-01-04 04:15:46.314",
+      "status": "READY"
+    }
+  ],
+  "name": "spark_2",
+  "id": "2GSUEC47P",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": true
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\npath\u003d\"/data/\"\ndf \u003d spark.read.text(path+\"/sample-2mb-text-file.txt\")\nprint(df.count())",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:17:00.336",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "5697\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d13"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641130836720_1671183384",
+      "id": "paragraph_1641130836720_1671183384",
+      "dateCreated": "2022-01-02 13:40:36.720",
+      "dateStarted": "2022-01-04 04:17:00.348",
+      "dateFinished": "2022-01-04 04:17:00.724",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nimport pyspark.sql.functions as F\nmnm \u003d spark.read.option(\"header\", True).option(\"inferSchema\", \"true\").csv(path + \"mnm_dataset.csv\")\nmnm.groupBy(\"Color\", \"State\") \\\n    .agg(F.sum(\"Count\").alias(\"Count\")) \\\n    .orderBy(\"Count\", ascending\u003dFalse) \\\n    .show(n\u003d10, truncate\u003dFalse)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:17:00.749",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-----+------+\n|Color |State|Count |\n+------+-----+------+\n|Yellow|CA   |100956|\n|Green |WA   |96486 |\n|Brown |CA   |95762 |\n|Green |TX   |95753 |\n|Red   |TX   |95404 |\n|Yellow|CO   |95038 |\n|Red   |NM   |94699 |\n|Orange|OR   |94514 |\n|Green |WY   |94339 |\n|Orange|NV   |93929 |\n+------+-----+------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d14"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d16"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641130841148_302048526",
+      "id": "paragraph_1641130841148_302048526",
+      "dateCreated": "2022-01-02 13:40:41.148",
+      "dateStarted": "2022-01-04 04:17:00.764",
+      "dateFinished": "2022-01-04 04:17:02.266",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nblogsDF \u003d spark.read.json(path + \"blogs.json\")\nblogsDF.select(F.expr(\"Hits * 2\")).show(2)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:17:02.367",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+\n|(Hits * 2)|\n+----------+\n|      9070|\n|     17816|\n+----------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d17"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d18"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641131072638_1992081334",
+      "id": "paragraph_1641131072638_1992081334",
+      "dateCreated": "2022-01-02 13:44:32.638",
+      "dateStarted": "2022-01-04 04:17:02.380",
+      "dateFinished": "2022-01-04 04:17:02.811",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nblogsDF.withColumn(\"Big Hitters\", (F.expr(\"Hits \u003e 10000\"))).show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:17:02.881",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+---------+-----+---+-------+---------+-----------------+-----------+\n|           Campaigns|    First| Hits| Id|   Last|Published|              Url|Big Hitters|\n+--------------------+---------+-----+---+-------+---------+-----------------+-----------+\n| [twitter, LinkedIn]|    Jules| 4535|  1|  Damji| 1/4/2016|https://tinyurl.1|      false|\n| [twitter, LinkedIn]|   Brooke| 8908|  2|  Wenig| 5/5/2018|https://tinyurl.2|      false|\n|[web, twitter, FB...|    Denny| 7659|  3|    Lee| 6/7/2019|https://tinyurl.3|      false|\n|       [twitter, FB]|Tathagata|10568|  4|    Das|5/12/2018|https://tinyurl.4|       true|\n|[web, twitter, FB...|    Matei|40578|  5|Zaharia|5/14/2014|https://tinyurl.5|       true|\n| [twitter, LinkedIn]|  Reynold|25568|  6|    Xin| 3/2/2015|https://tinyurl.6|       true|\n+--------------------+---------+-----+---+-------+---------+-----------------+-----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d19"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641131821265_224805691",
+      "id": "paragraph_1641131821265_224805691",
+      "dateCreated": "2022-01-02 13:57:01.265",
+      "dateStarted": "2022-01-04 04:17:02.894",
+      "dateFinished": "2022-01-04 04:17:03.228",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nblogsDF.orderBy(\"Id\",ascending\u003dFalse).show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:17:03.295",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+---------+-----+---+-------+---------+-----------------+\n|           Campaigns|    First| Hits| Id|   Last|Published|              Url|\n+--------------------+---------+-----+---+-------+---------+-----------------+\n| [twitter, LinkedIn]|  Reynold|25568|  6|    Xin| 3/2/2015|https://tinyurl.6|\n|[web, twitter, FB...|    Matei|40578|  5|Zaharia|5/14/2014|https://tinyurl.5|\n|       [twitter, FB]|Tathagata|10568|  4|    Das|5/12/2018|https://tinyurl.4|\n|[web, twitter, FB...|    Denny| 7659|  3|    Lee| 6/7/2019|https://tinyurl.3|\n| [twitter, LinkedIn]|   Brooke| 8908|  2|  Wenig| 5/5/2018|https://tinyurl.2|\n| [twitter, LinkedIn]|    Jules| 4535|  1|  Damji| 1/4/2016|https://tinyurl.1|\n+--------------------+---------+-----+---+-------+---------+-----------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d20"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641131872122_217046014",
+      "id": "paragraph_1641131872122_217046014",
+      "dateCreated": "2022-01-02 13:57:52.123",
+      "dateStarted": "2022-01-04 04:17:03.308",
+      "dateFinished": "2022-01-04 04:17:03.586",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "spark_1",
+  "id": "2GR5MZQGQ",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": true
+  }
+}

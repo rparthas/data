@@ -1,0 +1,127 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\nfrom pyspark.sql.types import *\nimport pyspark.sql.functions as F\ndef power(s,a\u003d2):\n  return s ** a\n\nspark.udf.register(\"power_fn\", power, LongType())\nspark.range(1, 9).createOrReplaceTempView(\"udf_test\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:57:27.205",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641271288966_777518752",
+      "id": "paragraph_1641271288966_777518752",
+      "dateCreated": "2022-01-04 04:41:28.966",
+      "dateStarted": "2022-01-04 04:57:27.216",
+      "dateFinished": "2022-01-04 04:57:27.433",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"SELECT id,power_fn(id,3) AS res FROM udf_test\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:53:28.414",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+---+\n| id|res|\n+---+---+\n|  1|  1|\n|  2|  8|\n|  3| 27|\n|  4| 64|\n|  5|125|\n|  6|216|\n|  7|343|\n|  8|512|\n+---+---+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d106"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d107"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d108"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641271330616_962167425",
+      "id": "paragraph_1641271330616_962167425",
+      "dateCreated": "2022-01-04 04:42:10.616",
+      "dateStarted": "2022-01-04 04:53:28.425",
+      "dateFinished": "2022-01-04 04:53:28.750",
+      "status": "FINISHED"
+    },
+    {
+      "user": "anonymous",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641272289366_1239102580",
+      "id": "paragraph_1641272289366_1239102580",
+      "dateCreated": "2022-01-04 04:58:09.366",
+      "status": "READY"
+    }
+  ],
+  "name": "spark_4",
+  "id": "2GRR25CRW",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

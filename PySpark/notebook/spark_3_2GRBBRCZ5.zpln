@@ -1,0 +1,463 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\ndf \u003d (spark.read.format(\"csv\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/departuredelays.csv\"))\ndf.createOrReplaceTempView(\"us_delay_flights_tbl\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:20:41.777",
+      "progress": 16,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d24"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d25"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641269907696_1304576109",
+      "id": "paragraph_1641269907696_1304576109",
+      "dateCreated": "2022-01-04 04:18:27.697",
+      "dateStarted": "2022-01-04 04:20:41.790",
+      "dateFinished": "2022-01-04 04:20:43.216",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"select * from us_delay_flights_tbl\").show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:23:42.021",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----+--------+------+-----------+\n|   date|delay|distance|origin|destination|\n+-------+-----+--------+------+-----------+\n|1011245|    6|     602|   ABE|        ATL|\n|1020600|   -8|     369|   ABE|        DTW|\n|1021245|   -2|     602|   ABE|        ATL|\n|1020605|   -4|     602|   ABE|        ATL|\n|1031245|   -4|     602|   ABE|        ATL|\n|1030605|    0|     602|   ABE|        ATL|\n|1041243|   10|     602|   ABE|        ATL|\n|1040605|   28|     602|   ABE|        ATL|\n|1051245|   88|     602|   ABE|        ATL|\n|1050605|    9|     602|   ABE|        ATL|\n+-------+-----+--------+------+-----------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d28"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270197972_1959274800",
+      "id": "paragraph_1641270197972_1959274800",
+      "dateCreated": "2022-01-04 04:23:17.972",
+      "dateStarted": "2022-01-04 04:23:42.032",
+      "dateFinished": "2022-01-04 04:23:42.310",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"select distance,origin,destination from us_delay_flights_tbl where distance \u003e 1000 order by distance desc\").show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:22:11.067",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+------+-----------+\n|distance|origin|destination|\n+--------+------+-----------+\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n+--------+------+-----------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d27"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270041786_1730276545",
+      "id": "paragraph_1641270041786_1730276545",
+      "dateCreated": "2022-01-04 04:20:41.786",
+      "dateStarted": "2022-01-04 04:22:11.077",
+      "dateFinished": "2022-01-04 04:22:12.107",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"select * from us_delay_flights_tbl where origin\u003d\u0027SFO\u0027 and destination\u003d\u0027ORD\u0027 and delay \u003c -2 order by delay asc\").show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:24:39.439",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----+--------+------+-----------+\n|   date|delay|distance|origin|destination|\n+-------+-----+--------+------+-----------+\n|1151110|  -14|    1604|   SFO|        ORD|\n|1231110|  -13|    1604|   SFO|        ORD|\n|1110935|  -12|    1604|   SFO|        ORD|\n|3071100|  -12|    1604|   SFO|        ORD|\n|3040705|  -12|    1604|   SFO|        ORD|\n|2251110|  -12|    1604|   SFO|        ORD|\n|2200836|  -11|    1604|   SFO|        ORD|\n|3111405|  -10|    1604|   SFO|        ORD|\n|3191810|  -10|    1604|   SFO|        ORD|\n|3210555|  -10|    1604|   SFO|        ORD|\n+-------+-----+--------+------+-----------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d33"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270116810_1295715174",
+      "id": "paragraph_1641270116810_1295715174",
+      "dateCreated": "2022-01-04 04:21:56.810",
+      "dateStarted": "2022-01-04 04:24:39.448",
+      "dateFinished": "2022-01-04 04:24:40.373",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nimport pyspark.sql.functions as F\n(df.select(\"distance\", \"origin\", \"destination\")\n  .where(F.col(\"distance\") \u003e 1000)\n  .orderBy(F.desc(\"distance\"))).show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:26:51.210",
+      "progress": 16,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+------+-----------+\n|distance|origin|destination|\n+--------+------+-----------+\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n|    4330|   HNL|        JFK|\n+--------+------+-----------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d34"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270248377_297613445",
+      "id": "paragraph_1641270248377_297613445",
+      "dateCreated": "2022-01-04 04:24:08.377",
+      "dateStarted": "2022-01-04 04:26:51.222",
+      "dateFinished": "2022-01-04 04:26:51.945",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.catalog.listDatabases()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:30:06.249",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Database(name\u003d\u0027default\u0027, description\u003d\u0027default database\u0027, locationUri\u003d\u0027file:/opt/zeppelin/spark-warehouse\u0027)]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d41"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270376585_1975162828",
+      "id": "paragraph_1641270376585_1975162828",
+      "dateCreated": "2022-01-04 04:26:16.585",
+      "dateStarted": "2022-01-04 04:30:06.260",
+      "dateFinished": "2022-01-04 04:30:06.529",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.catalog.listTables()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:30:09.532",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Table(name\u003d\u0027sf_fire\u0027, database\u003d\u0027default\u0027, description\u003dNone, tableType\u003d\u0027MANAGED\u0027, isTemporary\u003dFalse),\n Table(name\u003d\u0027us_delay_flights_tbl\u0027, database\u003dNone, description\u003dNone, tableType\u003d\u0027TEMPORARY\u0027, isTemporary\u003dTrue)]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d43"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270587254_1263014791",
+      "id": "paragraph_1641270587254_1263014791",
+      "dateCreated": "2022-01-04 04:29:47.254",
+      "dateStarted": "2022-01-04 04:30:09.542",
+      "dateFinished": "2022-01-04 04:30:09.819",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.catalog.listColumns(\"sf_fire\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-04 04:31:15.373",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Column(name\u003d\u0027CallNumber\u0027, description\u003dNone, dataType\u003d\u0027int\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027UnitID\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027IncidentNumber\u0027, description\u003dNone, dataType\u003d\u0027int\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027CallType\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027CallDate\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027WatchDate\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027CallFinalDisposition\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027AvailableDtTm\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Address\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027City\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Zipcode\u0027, description\u003dNone, dataType\u003d\u0027int\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Battalion\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027StationArea\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Box\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027OriginalPriority\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Priority\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027FinalPriority\u0027, description\u003dNone, dataType\u003d\u0027int\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027ALSUnit\u0027, description\u003dNone, dataType\u003d\u0027boolean\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027CallTypeGroup\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027NumAlarms\u0027, description\u003dNone, dataType\u003d\u0027int\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027UnitType\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027UnitSequenceInCallDispatch\u0027, description\u003dNone, dataType\u003d\u0027int\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027FirePreventionDistrict\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027SupervisorDistrict\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Neighborhood\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Location\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027RowID\u0027, description\u003dNone, dataType\u003d\u0027string\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse),\n Column(name\u003d\u0027Delay\u0027, description\u003dNone, dataType\u003d\u0027float\u0027, nullable\u003dTrue, isPartition\u003dFalse, isBucket\u003dFalse)]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d44"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d45"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d46"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d47"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d48"
+            },
+            {
+              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d49"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641270609542_889571118",
+      "id": "paragraph_1641270609542_889571118",
+      "dateCreated": "2022-01-04 04:30:09.542",
+      "dateStarted": "2022-01-04 04:31:15.384",
+      "dateFinished": "2022-01-04 04:31:15.815",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "spark_3",
+  "id": "2GRBBRCZ5",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
