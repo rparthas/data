@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%pyspark\nfrom pyspark.sql.types import *\nimport pyspark.sql.functions as F\ndef power(s,a\u003d2):\n  return s ** a\n\nspark.udf.register(\"power_fn\", power, LongType())\nspark.range(1, 9).createOrReplaceTempView(\"udf_test\")",
+      "text": "%pyspark\nfrom pyspark.sql.types import *\nimport pyspark.sql.functions as F\nfrom pyspark.sql import Window\ndef power(s,a\u003d2):\n  return s ** a\n\nspark.udf.register(\"power_fn\", power, LongType())\nspark.range(1, 9).createOrReplaceTempView(\"udf_test\")",
       "user": "anonymous",
-      "dateUpdated": "2022-01-04 04:57:27.205",
+      "dateUpdated": "2022-01-06 13:54:35.699",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -32,24 +32,24 @@
       "jobName": "paragraph_1641271288966_777518752",
       "id": "paragraph_1641271288966_777518752",
       "dateCreated": "2022-01-04 04:41:28.966",
-      "dateStarted": "2022-01-04 04:57:27.216",
-      "dateFinished": "2022-01-04 04:57:27.433",
+      "dateStarted": "2022-01-06 13:54:35.712",
+      "dateFinished": "2022-01-06 13:54:35.933",
       "status": "FINISHED"
     },
     {
       "text": "%pyspark\nspark.sql(\"SELECT id,power_fn(id,3) AS res FROM udf_test\").show()",
       "user": "anonymous",
-      "dateUpdated": "2022-01-04 04:53:28.414",
+      "dateUpdated": "2022-01-06 13:38:28.517",
       "progress": 0,
       "config": {
         "editorSetting": {
-          "language": "scala",
+          "language": "python",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
         "colWidth": 12.0,
-        "editorMode": "ace/mode/scala",
+        "editorMode": "ace/mode/python",
         "fontSize": 9.0,
         "results": {},
         "enabled": true
@@ -76,13 +76,13 @@
           "group": "spark",
           "values": [
             {
-              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d106"
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d19"
             },
             {
-              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d107"
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d20"
             },
             {
-              "jobUrl": "http://2c547f1367e5:4040/jobs/job?id\u003d108"
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d21"
             }
           ],
           "interpreterSettingId": "spark"
@@ -92,12 +92,805 @@
       "jobName": "paragraph_1641271330616_962167425",
       "id": "paragraph_1641271330616_962167425",
       "dateCreated": "2022-01-04 04:42:10.616",
-      "dateStarted": "2022-01-04 04:53:28.425",
-      "dateFinished": "2022-01-04 04:53:28.750",
+      "dateStarted": "2022-01-06 13:38:28.536",
+      "dateFinished": "2022-01-06 13:38:29.029",
       "status": "FINISHED"
     },
     {
+      "text": "%pyspark\nschema \u003d StructType([StructField(\"celsius\",ArrayType(IntegerType()))])\n\nt_list \u003d [[35, 36, 32, 30, 40, 42, 38]], [[31, 32, 34, 55, 56]]\nt_c \u003d spark.createDataFrame(t_list, schema)\nt_c.createOrReplaceTempView(\"tC\")\n\n# Show the DataFrame\nt_c.show()",
       "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:38:29.036",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|             celsius|\n+--------------------+\n|[35, 36, 32, 30, ...|\n|[31, 32, 34, 55, 56]|\n+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d22"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d23"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d24"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641272289366_1239102580",
+      "id": "paragraph_1641272289366_1239102580",
+      "dateCreated": "2022-01-04 04:58:09.366",
+      "dateStarted": "2022-01-06 13:38:29.086",
+      "dateFinished": "2022-01-06 13:38:29.538",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"\"\"\nSELECT celsius, \n transform(celsius, c -\u003e ((c * 9) / 5) + 32) as fahrenheit \n  FROM tC\n\"\"\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:38:29.586",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+--------------------+\n|             celsius|          fahrenheit|\n+--------------------+--------------------+\n|[35, 36, 32, 30, ...|[95.0, 96.8, 89.6...|\n|[31, 32, 34, 55, 56]|[87.8, 89.6, 93.2...|\n+--------------------+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d25"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d26"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d27"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641441537003_809626181",
+      "id": "paragraph_1641441537003_809626181",
+      "dateCreated": "2022-01-06 03:58:57.003",
+      "dateStarted": "2022-01-06 13:38:29.626",
+      "dateFinished": "2022-01-06 13:38:30.079",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"\"\"\nSELECT \n filter(celsius, c -\u003e c \u003e38) as high\n  FROM tC\n\"\"\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:38:30.125",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+\n|    high|\n+--------+\n|[40, 42]|\n|[55, 56]|\n+--------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d28"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d29"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d30"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641441612534_1883290090",
+      "id": "paragraph_1641441612534_1883290090",
+      "dateCreated": "2022-01-06 04:00:12.535",
+      "dateStarted": "2022-01-06 13:38:30.151",
+      "dateFinished": "2022-01-06 13:38:30.542",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.sql(\"\"\"\nSELECT \n exists(celsius, c -\u003e c \u003d\u003d 38) as high\n  FROM tC\n\"\"\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:38:30.551",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----+\n| high|\n+-----+\n| true|\n|false|\n+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d31"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d32"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d33"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641441717510_2094428384",
+      "id": "paragraph_1641441717510_2094428384",
+      "dateCreated": "2022-01-06 04:01:57.510",
+      "dateStarted": "2022-01-06 13:38:30.578",
+      "dateFinished": "2022-01-06 13:38:31.062",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nairportsPath \u003d \"/data/airport-codes-na.txt\"\nairports \u003d (spark.read.option(\"header\", \"true\")\n  .option(\"inferschema\", \"true\")\n  .option(\"delimiter\", \"\\t\")\n  .csv(airportsPath))\nairports.createOrReplaceTempView(\"airports_na\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:38:31.078",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d34"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d35"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641441836643_1040523988",
+      "id": "paragraph_1641441836643_1040523988",
+      "dateCreated": "2022-01-06 04:03:56.643",
+      "dateStarted": "2022-01-06 13:38:31.098",
+      "dateFinished": "2022-01-06 13:38:31.526",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndelaysPath \u003d \"/data/departuredelays.csv\"\ndelays \u003d (spark.read\n  .option(\"header\",\"true\")\n  .csv(delaysPath)\n  .withColumn(\"delay\", F.expr(\"CAST(delay as INT) as delay\"))\n  .withColumn(\"distance\", F.expr(\"CAST(distance as INT) as distance\")))\ndelays.createOrReplaceTempView(\"departureDelays\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:38:31.598",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d36"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476229303_291801198",
+      "id": "paragraph_1641476229303_291801198",
+      "dateCreated": "2022-01-06 13:37:09.303",
+      "dateStarted": "2022-01-06 13:38:31.610",
+      "dateFinished": "2022-01-06 13:38:31.939",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfoo \u003d delays.filter(F.expr(\"origin \u003d\u003d \u0027SEA\u0027 AND destination \u003d\u003d \u0027SFO\u0027 AND date like \u002701010%\u0027 AND delay \u003e 0\"))\nfoo.createOrReplaceTempView(\"foo\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:39:06.812",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476255603_900029946",
+      "id": "paragraph_1641476255603_900029946",
+      "dateCreated": "2022-01-06 13:37:35.603",
+      "dateStarted": "2022-01-06 13:39:06.822",
+      "dateFinished": "2022-01-06 13:39:07.040",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nbar \u003d delays.union(foo)\nbar.createOrReplaceTempView(\"bar\")\nbar.filter(F.expr(\"\"\"origin \u003d\u003d \u0027SEA\u0027 AND destination \u003d\u003d \u0027SFO\u0027 AND date LIKE \u002701010%\u0027 AND delay \u003e 0\"\"\")).show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:41:16.520",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+-----+--------+------+-----------+\n|    date|delay|distance|origin|destination|\n+--------+-----+--------+------+-----------+\n|01010710|   31|     590|   SEA|        SFO|\n|01010955|  104|     590|   SEA|        SFO|\n|01010730|    5|     590|   SEA|        SFO|\n|01010710|   31|     590|   SEA|        SFO|\n|01010955|  104|     590|   SEA|        SFO|\n|01010730|    5|     590|   SEA|        SFO|\n+--------+-----+--------+------+-----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d37"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d38"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d39"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476315946_830820779",
+      "id": "paragraph_1641476315946_830820779",
+      "dateCreated": "2022-01-06 13:38:35.946",
+      "dateStarted": "2022-01-06 13:41:16.530",
+      "dateFinished": "2022-01-06 13:41:19.474",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nfoo.join(airports,airports.IATA\u003d\u003dfoo.origin).show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:42:39.413",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+-----+--------+------+-----------+-------+-----+-------+----+\n|    date|delay|distance|origin|destination|   City|State|Country|IATA|\n+--------+-----+--------+------+-----------+-------+-----+-------+----+\n|01010710|   31|     590|   SEA|        SFO|Seattle|   WA|    USA| SEA|\n|01010955|  104|     590|   SEA|        SFO|Seattle|   WA|    USA| SEA|\n|01010730|    5|     590|   SEA|        SFO|Seattle|   WA|    USA| SEA|\n+--------+-----+--------+------+-----------+-------+-----+-------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d40"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d41"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d43"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476401158_1343841627",
+      "id": "paragraph_1641476401158_1343841627",
+      "dateCreated": "2022-01-06 13:40:01.158",
+      "dateStarted": "2022-01-06 13:42:39.424",
+      "dateFinished": "2022-01-06 13:42:41.419",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nairports.show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:43:02.577",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------+-----+-------+----+\n|       City|State|Country|IATA|\n+-----------+-----+-------+----+\n| Abbotsford|   BC| Canada| YXX|\n|   Aberdeen|   SD|    USA| ABR|\n|    Abilene|   TX|    USA| ABI|\n|      Akron|   OH|    USA| CAK|\n|    Alamosa|   CO|    USA| ALS|\n|     Albany|   GA|    USA| ABY|\n|     Albany|   NY|    USA| ALB|\n|Albuquerque|   NM|    USA| ABQ|\n| Alexandria|   LA|    USA| AEX|\n|  Allentown|   PA|    USA| ABE|\n|   Alliance|   NE|    USA| AIA|\n|     Alpena|   MI|    USA| APN|\n|    Altoona|   PA|    USA| AOO|\n|   Amarillo|   TX|    USA| AMA|\n|Anahim Lake|   BC| Canada| YAA|\n|  Anchorage|   AK|    USA| ANC|\n|   Appleton|   WI|    USA| ATW|\n|     Arviat|  NWT| Canada| YEK|\n|  Asheville|   NC|    USA| AVL|\n|      Aspen|   CO|    USA| ASE|\n+-----------+-----+-------+----+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d44"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476559424_996798778",
+      "id": "paragraph_1641476559424_996798778",
+      "dateCreated": "2022-01-06 13:42:39.424",
+      "dateStarted": "2022-01-06 13:43:02.589",
+      "dateFinished": "2022-01-06 13:43:02.873",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndepartureDelaysWindow \u003d delays.where(\"origin in (\u0027SEA\u0027, \u0027SFO\u0027, \u0027JFK\u0027) and destination IN (\u0027SEA\u0027, \u0027SFO\u0027, \u0027JFK\u0027, \u0027DEN\u0027, \u0027ORD\u0027, \u0027LAX\u0027, \u0027ATL\u0027)\").groupBy(\"origin\",\"destination\").agg(F.sum(\"delay\").alias(\"delay\"))\ndepartureDelaysWindow.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:56:24.019",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-----------+-----+\n|origin|destination|delay|\n+------+-----------+-----+\n|   JFK|        ORD| 5608|\n|   SEA|        LAX| 9359|\n|   JFK|        SFO|35619|\n|   SFO|        ORD|27412|\n|   JFK|        DEN| 4315|\n|   SFO|        DEN|18688|\n|   SFO|        SEA|17080|\n|   SEA|        SFO|22293|\n|   JFK|        ATL|12141|\n|   SFO|        ATL| 5091|\n+------+-----------+-----+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d63"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d64"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d65"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d66"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476582588_1981687437",
+      "id": "paragraph_1641476582588_1981687437",
+      "dateCreated": "2022-01-06 13:43:02.589",
+      "dateStarted": "2022-01-06 13:56:24.030",
+      "dateFinished": "2022-01-06 13:56:25.193",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n\nwindow \u003d Window.partitionBy(\"origin\").orderBy(F.desc(\"delay\"))\ndepartureDelaysWindow.withColumn(\"rank\",F.dense_rank().over(window)).filter(F.col(\"rank\") \u003c\u003d 3).orderBy(\"origin\",\"rank\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 13:59:28.487",
+      "progress": 55,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-----------+-----+----+\n|origin|destination|delay|rank|\n+------+-----------+-----+----+\n|   JFK|        LAX|35755|   1|\n|   JFK|        SFO|35619|   2|\n|   JFK|        ATL|12141|   3|\n|   SEA|        SFO|22293|   1|\n|   SEA|        DEN|13645|   2|\n|   SEA|        ORD|10041|   3|\n|   SFO|        LAX|40798|   1|\n|   SFO|        ORD|27412|   2|\n|   SFO|        JFK|24100|   3|\n+------+-----------+-----+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d72"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641476724685_447231325",
+      "id": "paragraph_1641476724685_447231325",
+      "dateCreated": "2022-01-06 13:45:24.685",
+      "dateStarted": "2022-01-06 13:59:28.501",
+      "dateFinished": "2022-01-06 13:59:30.489",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndepartureDelaysWithMonth \u003d delays.withColumn(\u0027month\u0027,F.substring(\"date\",0,2)).filter(F.col(\u0027origin\u0027) \u003d\u003d \u0027SEA\u0027)\ndepartureDelaysWithMonth.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 14:08:49.921",
+      "progress": 25,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+-----+--------+------+-----------+-----+\n|    date|delay|distance|origin|destination|month|\n+--------+-----+--------+------+-----------+-----+\n|01011425|   92|    1495|   SEA|        ORD|   01|\n|01010715|   -7|    2104|   SEA|        JFK|   01|\n|01010830|   -5|    1442|   SEA|        DFW|   01|\n|01012205|   -3|    2367|   SEA|        MIA|   01|\n|01010600|   -3|    1442|   SEA|        DFW|   01|\n|01012320|    1|    1442|   SEA|        DFW|   01|\n|01010820|  -10|    1495|   SEA|        ORD|   01|\n|01010710|   -6|    1442|   SEA|        DFW|   01|\n|01011115|   -2|    1442|   SEA|        DFW|   01|\n|01011205|   -3|    1495|   SEA|        ORD|   01|\n+--------+-----+--------+------+-----------+-----+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d83"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d84"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641477239976_1071288747",
+      "id": "paragraph_1641477239976_1071288747",
+      "dateCreated": "2022-01-06 13:53:59.976",
+      "dateStarted": "2022-01-06 14:08:49.932",
+      "dateFinished": "2022-01-06 14:08:51.314",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndepartureDelaysWithMonth.groupBy(\"destination\").pivot(\"Month\",[\"01\",\"02\"]).agg(F.avg(\"delay\").alias(\"AvgDelay\"),F.max(\"delay\").alias(\"MaxDelay\")).show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 14:13:58.375",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------+-------------------+-----------+--------------------+-----------+\n|destination|        01_AvgDelay|01_MaxDelay|         02_AvgDelay|02_MaxDelay|\n+-----------+-------------------+-----------+--------------------+-----------+\n|        GEG| 2.2795698924731185|         63|   2.869047619047619|         60|\n|        SNA|-3.5806451612903225|         82|-0.41208791208791207|         90|\n|        BUR| -2.032608695652174|         56| -1.8928571428571428|         78|\n|        OAK| 15.822878228782288|        385|   8.120833333333334|        150|\n|        DCA|-1.1475409836065573|         50| 0.07142857142857142|         34|\n|        KTN| 2.3978494623655915|         64|                 5.0|        128|\n|        LIH|-1.6363636363636365|         15|                -1.7|         21|\n|        IAH| 17.906593406593405|        227|   7.787356321839081|        466|\n|        HNL| 7.4338235294117645|        294|              2.9375|        132|\n|        SJC|  4.455882352941177|        256|  2.7403314917127073|         74|\n+-----------+-------------------+-----------+--------------------+-----------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d110"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d111"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d112"
+            },
+            {
+              "jobUrl": "http://06fa4f254bf6:4040/jobs/job?id\u003d113"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641477738710_1844104849",
+      "id": "paragraph_1641477738710_1844104849",
+      "dateCreated": "2022-01-06 14:02:18.710",
+      "dateStarted": "2022-01-06 14:13:58.389",
+      "dateFinished": "2022-01-06 14:14:00.067",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-06 14:05:53.194",
       "progress": 0,
       "config": {},
       "settings": {
@@ -107,9 +900,9 @@
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1641272289366_1239102580",
-      "id": "paragraph_1641272289366_1239102580",
-      "dateCreated": "2022-01-04 04:58:09.366",
+      "jobName": "paragraph_1641477953194_1343695842",
+      "id": "paragraph_1641477953194_1343695842",
+      "dateCreated": "2022-01-06 14:05:53.194",
       "status": "READY"
     }
   ],
@@ -123,5 +916,7 @@
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
-  "info": {}
+  "info": {
+    "isRunning": false
+  }
 }
