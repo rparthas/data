@@ -55,4 +55,4 @@
 #docker exec -it hadoop-master pig -x tez load_user_into_hbase.pig
 
 ## Zeppelin
-docker run -p 8080:8080 --rm -v $PWD/logs:/logs -v $PWD/notebook:/notebook -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' -v $PWD/data:/data  --name zeppelin apache/zeppelin:0.9.0
+docker run -p 8080:8080 -p 4040:4040 --rm -v $PWD/logs:/logs:Z -v $PWD/notebook:/notebook:Z -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' -v $PWD/data:/data:Z  --name zeppelin apache/zeppelin:0.9.0

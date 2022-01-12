@@ -1,0 +1,115 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\nspark.sql(\"SET -v\").select(\"key\", \"value\").show(n\u003d5, truncate\u003dFalse)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-07 03:37:49.830",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------------------------------------------+---------+\n|key                                                  |value    |\n+-----------------------------------------------------+---------+\n|spark.sql.adaptive.enabled                           |false    |\n|spark.sql.adaptive.shuffle.targetPostShuffleInputSize|67108864b|\n|spark.sql.autoBroadcastJoinThreshold                 |10485760 |\n|spark.sql.avro.compression.codec                     |snappy   |\n|spark.sql.avro.deflate.level                         |-1       |\n+-----------------------------------------------------+---------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641526662642_640712435",
+      "id": "paragraph_1641526662642_640712435",
+      "dateCreated": "2022-01-07 03:37:42.642",
+      "dateStarted": "2022-01-07 03:37:49.861",
+      "dateFinished": "2022-01-07 03:38:03.278",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nspark.conf.get(\"spark.sql.shuffle.partitions\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-07 03:38:26.235",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u0027200\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641526669858_179938524",
+      "id": "paragraph_1641526669858_179938524",
+      "dateCreated": "2022-01-07 03:37:49.858",
+      "dateStarted": "2022-01-07 03:38:26.248",
+      "dateFinished": "2022-01-07 03:38:26.487",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-07 03:38:26.247",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1641526706247_418979735",
+      "id": "paragraph_1641526706247_418979735",
+      "dateCreated": "2022-01-07 03:38:26.247",
+      "status": "READY"
+    }
+  ],
+  "name": "spark_5",
+  "id": "2GT5MEDHZ",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
