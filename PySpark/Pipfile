@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyspark = "==2.4.5"
+pyspark = "==3.1.2"
 mrjob = "==0.7.4"
-pyspark-stubs = "==2.4.0post9"
 starbase = "==0.3.3"
 urllib3=">=1.26.5"
+delta-spark="*"
+numpy="*"
 
 [requires]
 python_version = "3.6"
