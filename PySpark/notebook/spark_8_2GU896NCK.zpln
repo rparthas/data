@@ -1,0 +1,470 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\ndf \u003d spark.read.option(\"inferSchema\",True).option(\"header\",True).csv(\"/data/flight-data/csv/2015-summary.csv\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:32:13.397",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d3"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476483624_2134630648",
+      "id": "paragraph_1642476483624_2134630648",
+      "dateCreated": "2022-01-18 03:28:03.624",
+      "dateStarted": "2022-01-18 03:32:13.417",
+      "dateFinished": "2022-01-18 03:32:13.960",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nimport pyspark.sql.functions as F\ndf.withColumn(\"Destination\", F.expr(\"DEST_COUNTRY_NAME\")).columns",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:32:14.021",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[\u0027DEST_COUNTRY_NAME\u0027, \u0027ORIGIN_COUNTRY_NAME\u0027, \u0027count\u0027, \u0027Destination\u0027]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476486346_231733760",
+      "id": "paragraph_1642476486346_231733760",
+      "dateCreated": "2022-01-18 03:28:06.346",
+      "dateStarted": "2022-01-18 03:32:14.040",
+      "dateFinished": "2022-01-18 03:32:14.278",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndf.withColumnRenamed(\"DEST_COUNTRY_NAME\", \"dest\").columns",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:32:14.342",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[\u0027dest\u0027, \u0027ORIGIN_COUNTRY_NAME\u0027, \u0027count\u0027]"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476499719_1086984874",
+      "id": "paragraph_1642476499719_1086984874",
+      "dateCreated": "2022-01-18 03:28:19.720",
+      "dateStarted": "2022-01-18 03:32:14.360",
+      "dateFinished": "2022-01-18 03:32:14.599",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndf.select(\"ORIGIN_COUNTRY_NAME\").distinct().count()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:32:14.661",
+      "progress": 75,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "125"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d4"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476544540_1314168778",
+      "id": "paragraph_1642476544540_1314168778",
+      "dateCreated": "2022-01-18 03:29:04.541",
+      "dateStarted": "2022-01-18 03:32:14.678",
+      "dateFinished": "2022-01-18 03:32:17.166",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\nseed \u003d 5\nwithReplacement \u003d False\nfraction \u003d 0.5\ndf.sample(withReplacement, fraction, seed).count()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:32:42.313",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "126"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d5"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476720955_1284439694",
+      "id": "paragraph_1642476720955_1284439694",
+      "dateCreated": "2022-01-18 03:32:00.955",
+      "dateStarted": "2022-01-18 03:32:42.332",
+      "dateFinished": "2022-01-18 03:32:42.733",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndf.orderBy(F.col(\"count\").desc(), F.col(\"DEST_COUNTRY_NAME\").asc()).show(2)",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:34:43.144",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+------+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME| count|\n+-----------------+-------------------+------+\n|    United States|      United States|370002|\n|    United States|             Canada|  8483|\n+-----------------+-------------------+------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d6"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476762330_1039107371",
+      "id": "paragraph_1642476762330_1039107371",
+      "dateCreated": "2022-01-18 03:32:42.330",
+      "dateStarted": "2022-01-18 03:34:43.163",
+      "dateFinished": "2022-01-18 03:34:43.612",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndf.rdd.getNumPartitions()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:36:45.176",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "1"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642476873724_421799458",
+      "id": "paragraph_1642476873724_421799458",
+      "dateCreated": "2022-01-18 03:34:33.724",
+      "dateStarted": "2022-01-18 03:36:45.191",
+      "dateFinished": "2022-01-18 03:36:45.429",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndf.repartition(5, \"DEST_COUNTRY_NAME\").coalesce(2).rdd.getNumPartitions()",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:37:29.592",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "2"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642477005191_1047394280",
+      "id": "paragraph_1642477005191_1047394280",
+      "dateCreated": "2022-01-18 03:36:45.193",
+      "dateStarted": "2022-01-18 03:37:29.610",
+      "dateFinished": "2022-01-18 03:37:29.894",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\ndf \u003d spark.read.format(\"csv\")\\\n  .option(\"header\", \"true\")\\\n  .option(\"inferSchema\", \"true\")\\\n  .load(\"/data/retail-data/by-day/2010-12-01.csv\")\ndf.printSchema()\ndf.createOrReplaceTempView(\"dfTable\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:43:05.462",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- InvoiceNo: string (nullable \u003d true)\n |-- StockCode: string (nullable \u003d true)\n |-- Description: string (nullable \u003d true)\n |-- Quantity: integer (nullable \u003d true)\n |-- InvoiceDate: timestamp (nullable \u003d true)\n |-- UnitPrice: double (nullable \u003d true)\n |-- CustomerID: double (nullable \u003d true)\n |-- Country: string (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://4497bceac119:4040/jobs/job?id\u003d8"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642477009095_2013122633",
+      "id": "paragraph_1642477009095_2013122633",
+      "dateCreated": "2022-01-18 03:36:49.095",
+      "dateStarted": "2022-01-18 03:43:05.482",
+      "dateFinished": "2022-01-18 03:43:06.132",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-01-18 03:43:05.480",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1642477385480_1230691035",
+      "id": "paragraph_1642477385480_1230691035",
+      "dateCreated": "2022-01-18 03:43:05.480",
+      "status": "READY"
+    }
+  ],
+  "name": "spark_8",
+  "id": "2GU896NCK",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": false
+  }
+}
