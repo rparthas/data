@@ -1,0 +1,30 @@
+wget https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.csv
+
+docker build . -t taxi_ingest:v001 
+
+-network week1_nytaxi
+
+URL="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.csv"
+docker run -it \
+  --network=week1_nytaxi \
+  taxi_ingest:v002 \
+    --user=root \
+    --password=root \
+    --host=week1-pgdatabase-1 \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url=${URL}
+
+
+URL="https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv"
+docker run -it \
+  --network=week1_nytaxi \
+  taxi_ingest:v002 \
+    --user=root \
+    --password=root \
+    --host=week1-pgdatabase-1 \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=zone_lookup \
+    --url=${URL}
