@@ -15,4 +15,6 @@ fileignoreconfig:
   checksum: 6ad5ec0cf2810f17afd3d5bfc1e26a4e028cf703737150dff187e6b3a8ecd2c3
 - filename: de-zoomcamp/week1/ingest_data.py
   checksum: 113e5df52f4b13f3871986c436c47e0ac4541ac4bbecc1242b6d8615e35ad197
+- filename: de-zoomcamp/week2/airflow/docker-compose.yaml
+  checksum: d7cfdb4ddc2c20687734e1bae4df92dfed05e1d96c47a30cfac90e3354db01c5
 version: ""
