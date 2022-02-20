@@ -11,10 +11,10 @@ fileignoreconfig:
   checksum: 5f2f84b8ff31d862cb241a515b31ef06367fc062466695693271e0fed90a27ce
 - filename: de-zoomcamp/week1/pg-test.ipynb
   checksum: 3f70c6245a5f0b0f92ff39ab56c9b11997dc6b409d649468c7650bf6447bbfba
-- filename: de-zoomcamp/Pipfile.lock
-  checksum: 6ad5ec0cf2810f17afd3d5bfc1e26a4e028cf703737150dff187e6b3a8ecd2c3
 - filename: de-zoomcamp/week1/ingest_data.py
   checksum: 113e5df52f4b13f3871986c436c47e0ac4541ac4bbecc1242b6d8615e35ad197
+- filename: de-zoomcamp/Pipfile.lock
+  checksum: e25bcaa874d9f7e571fad472e0c88731d6ce25d750ecc9882a2dab638b8ebbb2
 - filename: de-zoomcamp/week2/airflow/docker-compose.yaml
-  checksum: d7cfdb4ddc2c20687734e1bae4df92dfed05e1d96c47a30cfac90e3354db01c5
+  checksum: fe3dcefca647f9a96ccda18cb216fa15a5f83f76863efb0b7f47a2aa87f6e328
 version: ""

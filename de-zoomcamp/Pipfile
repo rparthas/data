@@ -8,6 +8,8 @@ sqlalchemy = "*"
 psycopg2-binary = "*"
 jupyter = "*"
 pandas = "*"
+pyarrow = "*"
+apache-airflow-providers-google = "*"
 
 [dev-packages]
 

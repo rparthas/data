@@ -2,3 +2,4 @@
 *.python-version
 *logs/
 .env
+.idea
