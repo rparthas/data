@@ -17,4 +17,18 @@ fileignoreconfig:
   checksum: e25bcaa874d9f7e571fad472e0c88731d6ce25d750ecc9882a2dab638b8ebbb2
 - filename: de-zoomcamp/week2/airflow/docker-compose.yaml
   checksum: fe3dcefca647f9a96ccda18cb216fa15a5f83f76863efb0b7f47a2aa87f6e328
+- filename: de-zoomcamp/week3/tables.sql
+  checksum: e3ff39047645a4aadfd7e8feee6ea515732f99ed95bc3e9c877269f9deeb0171
+- filename: de-zoomcamp/week4/nytaxi/macros/get_payment_type_description.sql
+  checksum: 7339a1c14a0d077a29bdcb362591578a73e31f27a59952d5b93acaf832052b36
+- filename: de-zoomcamp/week4/nytaxi/models/core/dim_zones.sql
+  checksum: 58ab85b59abcad1c74f1471a872e06fdd11343af638333a487ea3183fca47dc2
+- filename: de-zoomcamp/week4/nytaxi/models/core/dm_monthly_zone_revenue.sql
+  checksum: 6a49b5e1f8fedd74907ef2a51f6a5d4b9b7d719fbd4fce5221de47819a69a1c6
+- filename: de-zoomcamp/week4/nytaxi/models/core/fact_trips.sql
+  checksum: a0b11a6f19d6ddd93244e65bb33da38e42342fafa6df847e08dc37a00efd85b7
+- filename: de-zoomcamp/week4/nytaxi/models/staging/stg_green_tripdata.sql
+  checksum: beb38422ac2f2acb123f1f141d7fff06003934cae7940774fe79a296c4f7a35c
+- filename: de-zoomcamp/week4/nytaxi/models/staging/stg_yellow_tripdata.sql
+  checksum: cdddfd03436eb42811f530bc5c70da252a392659dc3c7fc5f851f33fad726dfb
 version: ""

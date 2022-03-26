@@ -10,6 +10,7 @@ jupyter = "*"
 pandas = "*"
 pyarrow = "*"
 apache-airflow-providers-google = "*"
+pyspark = "*"
 
 [dev-packages]
 
