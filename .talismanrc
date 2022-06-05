@@ -31,4 +31,8 @@ fileignoreconfig:
   checksum: beb38422ac2f2acb123f1f141d7fff06003934cae7940774fe79a296c4f7a35c
 - filename: de-zoomcamp/week4/nytaxi/models/staging/stg_yellow_tripdata.sql
   checksum: cdddfd03436eb42811f530bc5c70da252a392659dc3c7fc5f851f33fad726dfb
+- filename: ML/feathr_demo.ipynb
+  checksum: bde84b578cd06da38d23eea3c45d9937a9a820a35141a787b5ae0c0d49aa24d8
+- filename: hackathons/Phishing.ipynb
+  checksum: af5b28b39a4ea94cf73f19f63034020364adf5f630d6324828f7134c1e3fd3db
 version: ""
