@@ -1,0 +1,2 @@
+airflow scheduler &
+airflow webserver &
