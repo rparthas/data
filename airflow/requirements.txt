@@ -1,5 +1,5 @@
 apache-airflow==2.4.2
 numpy
 pandas
-faker
+faker==15.3.1
 flask
