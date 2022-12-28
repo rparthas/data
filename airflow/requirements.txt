@@ -3,3 +3,4 @@ numpy
 pandas
 faker==15.3.1
 flask
+apache-airflow-providers-amazon==6.2.0

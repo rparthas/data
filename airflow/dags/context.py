@@ -1,7 +1,7 @@
 import datetime as dt
 
 from airflow import DAG
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 
 dag = DAG(
@@ -20,9 +20,10 @@ print_context = PythonOperator(
     dag=dag,
 )
 
-dummy = DummyOperator(
+dummy = EmptyOperator(
     task_id='dummy',
     dag=dag,
 )
+
 
 print_context >> dummy
