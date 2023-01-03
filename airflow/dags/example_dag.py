@@ -1,7 +1,9 @@
 from airflow import DAG, utils
 from airflow.decorators import task
-from airflow.operators.python import PythonOperator,BranchPythonOperator
+from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+
+from customCode import CustomOperator, CustomHook, CustomSensor
 
 with DAG(
         dag_id='learn_example',
@@ -25,6 +27,11 @@ with DAG(
         return message
 
 
+    def __step9__(arg, **context):
+        hook = CustomHook(arg)
+        hook.print_argument("World")
+
+
     step3 = BranchPythonOperator(
         task_id='step3',
         python_callable=__step3__
@@ -33,7 +40,7 @@ with DAG(
     step4 = PythonOperator(
         task_id='step4',
         trigger_rule="all_done",
-        python_callable=lambda : print("step4")
+        python_callable=lambda: print("step4")
     )
 
     step5 = PythonOperator(
@@ -51,6 +58,20 @@ with DAG(
         task_id='step7'
     )
 
+    step8 = CustomOperator(
+        task_id='step8',
+        args='Argument'
+    )
+
+    step9 = PythonOperator(
+        task_id='step9',
+        python_callable=__step9__,
+        op_kwargs={"arg": "Hello"},
+    )
+
+    step10 = CustomSensor(
+        task_id='step10',
+    )
 
     msg = step1()
     step2(msg)
@@ -59,3 +80,6 @@ with DAG(
     step5.set_upstream(step3)
     step6.set_upstream(step3)
     step7.set_upstream(step4)
+    step10.set_upstream(step7)
+    step10.set_downstream(step8)
+    step10.set_downstream(step9)
