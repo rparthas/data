@@ -2,6 +2,7 @@ from airflow import DAG, utils
 from airflow.decorators import task
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+# from airflow.providers.docker.operators.docker import DockerOperator
 
 from customCode import CustomOperator, CustomHook, CustomSensor
 
@@ -15,22 +16,18 @@ with DAG(
         context["task_instance"].xcom_push(key="message", value="step5")
         return "message"
 
-
     @task()
     def step2(message):
         print(message)
-
 
     def __step3__(**context):
         message = context["task_instance"].xcom_pull(key="message")
         print(message)
         return message
 
-
     def __step9__(arg, **context):
         hook = CustomHook(arg)
         hook.print_argument("World")
-
 
     step3 = BranchPythonOperator(
         task_id='step3',
@@ -73,6 +70,13 @@ with DAG(
         task_id='step10',
     )
 
+    # step11 = DockerOperator(
+    #     image="ubuntu:latest",
+    #     task_id="step11",
+    #     command="echo hello",
+    #     network_mode="bridge",
+    # )
+
     msg = step1()
     step2(msg)
     step3.set_upstream(msg)
@@ -83,3 +87,4 @@ with DAG(
     step10.set_upstream(step7)
     step10.set_downstream(step8)
     step10.set_downstream(step9)
+    # step11.set_upstream(step10)
