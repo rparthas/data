@@ -1,3 +1,8 @@
 python-telegram-bot
 python-dotenv
 openai
+langchain
+tiktoken
+pandas
+numpy
+scipy
