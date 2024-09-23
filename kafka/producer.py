@@ -1,17 +1,12 @@
 from random import choice
 from confluent_kafka import Producer
 
-from kafka.constants import TOPIC_PURCHASES
+from constants import TOPIC_PURCHASES, read_config
 
 if __name__ == '__main__':
 
-    config = {
-        'bootstrap.servers': 'localhost:29092',
-        'acks': 'all'
-    }
-
     # Create Producer instance
-    producer = Producer(config)
+    producer = Producer(read_config())
 
 
     def delivery_callback(err, msg):

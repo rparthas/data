@@ -7,6 +7,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
+    networks:
+      - kafka_network
 
   zookeeper-2:
     image: confluentinc/cp-zookeeper:7.4.4
@@ -15,13 +17,14 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 32181:2181
+    networks:
+      - kafka_network
   
   kafka-1:
     image: confluentinc/cp-kafka:7.4.4
     depends_on:
       - zookeeper-1
       - zookeeper-2
-
     ports:
       - 29092:29092
     environment:
@@ -31,6 +34,9 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - kafka_network
+
   kafka-2:
     image: confluentinc/cp-kafka:7.4.4
     depends_on:
@@ -45,3 +51,23 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - kafka_network
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    depends_on:
+      - kafka-1
+      - kafka-2
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-1:9092,PLAINTEXT://kafka-2:9092
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    ports:
+      - "8081:8081"
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
+    driver: bridge

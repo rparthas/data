@@ -1,12 +1,10 @@
 from confluent_kafka import Consumer, KafkaError
 
-from kafka.constants import TOPIC_PURCHASES
+from constants import TOPIC_PURCHASES, read_config
 
-conf = {
-    'bootstrap.servers': 'localhost:39092',
-    'auto.offset.reset': 'earliest',
-    'group.id': 'purchases-consumer-group',
-}
+conf = read_config()
+conf["group.id"] = "purchases-group-1"
+conf["auto.offset.reset"] = "earliest"
 
 c = Consumer(conf)
 c.subscribe([TOPIC_PURCHASES])
