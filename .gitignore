@@ -8,3 +8,4 @@
 .idea
 aiForEng/text/*
 aiForEng/processed/*
+kafka/config.properties
