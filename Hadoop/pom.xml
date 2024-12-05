@@ -15,7 +15,7 @@
 		<jdk.version>1.8</jdk.version>
 		<twitter.version>4.0.2</twitter.version>
 		<hadoop.version>3.2.3</hadoop.version>
-		<kafka.version>0.10.2.0</kafka.version>
+		<kafka.version>0.10.2.2</kafka.version>
 		<junit.version>4.13.1</junit.version>
 	</properties>
 
